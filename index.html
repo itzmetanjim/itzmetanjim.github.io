@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Kamal - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Fallback font styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Tanjim Kamal</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#achievements" class="nav-link">Achievements</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Hello, I'm <span class="highlight">Tanjim Kamal</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Software Developer & Technology Enthusiast
+                    </p>
+                    <p class="hero-description">
+                        Passionate about creating innovative solutions and building meaningful technology that makes a difference.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-placeholder">
+                        <span class="profile-icon">👨‍💻</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know who I am and what I do</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a dedicated software developer with a passion for creating innovative solutions that solve real-world problems. 
+                        My journey in technology has been driven by curiosity and a desire to continuously learn and grow.
+                    </p>
+                    <p>
+                        With experience in various programming languages and frameworks, I enjoy tackling complex challenges 
+                        and turning ideas into functional, user-friendly applications.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>5+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3>10+</h3>
+                            <p>Technologies Mastered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Technologies I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-icon">🌐</span>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🎨</span>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">⚡</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">⚛️</span>
+                            <span>React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-icon">🟢</span>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐍</span>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🗄️</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🚀</span>
+                            <span>Express.js</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Others</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-icon">📂</span>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐳</span>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">☁️</span>
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-icon">🐧</span>
+                            <span>Linux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my recent work</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span class="project-icon">💻</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Web Application</h3>
+                        <p>A full-stack web application built with modern technologies, featuring user authentication and real-time data processing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                📁 Code
+                            </a>
+                            <a href="#" class="project-link">
+                                🔗 Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span class="project-icon">📱</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Mobile App</h3>
+                        <p>A cross-platform mobile application designed to enhance user productivity with intuitive design and seamless performance.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                📁 Code
+                            </a>
+                            <a href="#" class="project-link">
+                                🔗 Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <span class="project-icon">📊</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Analytics Tool</h3>
+                        <p>A comprehensive analytics dashboard for visualizing complex data sets with interactive charts and real-time updates.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">D3.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">
+                                📁 Code
+                            </a>
+                            <a href="#" class="project-link">
+                                🔗 Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Achievements & Recognition</h2>
+                <p class="section-subtitle">Milestones and accomplishments in my journey</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">🏆</span>
+                    </div>
+                    <h3>Technical Excellence Award</h3>
+                    <p>Recognized for outstanding technical contributions and innovative problem-solving approaches in software development.</p>
+                    <span class="achievement-year">2024</span>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">🎓</span>
+                    </div>
+                    <h3>Certified Developer</h3>
+                    <p>Successfully completed advanced certifications in cloud computing and full-stack development technologies.</p>
+                    <span class="achievement-year">2023</span>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">👥</span>
+                    </div>
+                    <h3>Team Leadership</h3>
+                    <p>Led cross-functional teams to deliver high-impact projects, fostering collaboration and driving results.</p>
+                    <span class="achievement-year">2023</span>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">💡</span>
+                    </div>
+                    <h3>Innovation Award</h3>
+                    <p>Developed innovative solutions that improved system efficiency by 40% and enhanced user experience.</p>
+                    <span class="achievement-year">2022</span>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">🌟</span>
+                    </div>
+                    <h3>Open Source Contributor</h3>
+                    <p>Active contributor to several open-source projects with over 1000+ commits and meaningful contributions.</p>
+                    <span class="achievement-year">2022</span>
+                </div>
+                
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <span class="achievement-emoji">🥇</span>
+                    </div>
+                    <h3>Hackathon Winner</h3>
+                    <p>First place winner in multiple hackathons, demonstrating rapid prototyping and creative problem-solving skills.</p>
+                    <span class="achievement-year">2021</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together on your next project</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="contact-emoji">📧</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>tanjim@example.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="contact-emoji">💼</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/tanjimkamal</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <span class="contact-emoji">📂</span>
+                        </div>
+                        <div class="contact-details">
+                            <h3>GitHub</h3>
+                            <p>github.com/itzmetanjim</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Tanjim Kamal. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="GitHub">
+                        📂
+                    </a>
+                    <a href="#" class="social-link" title="LinkedIn">
+                        💼
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        🐦
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

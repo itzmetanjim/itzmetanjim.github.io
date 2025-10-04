@@ -64,7 +64,7 @@ export default function NavigationExample() {
   const [page, setPage] = useState(1);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleBottomNavChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleBottomNavChange = (_event: React.SyntheticEvent, newValue: number) => {
     setBottomNavValue(newValue);
   };
 
@@ -80,7 +80,7 @@ export default function NavigationExample() {
     setActiveStep(0);
   };
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
   };
 

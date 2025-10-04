@@ -25,7 +25,7 @@ export default function ButtonsExample() {
   const [alignment, setAlignment] = useState<string | null>('left');
 
   const handleAlignment = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newAlignment: string | null,
   ) => {
     setAlignment(newAlignment);

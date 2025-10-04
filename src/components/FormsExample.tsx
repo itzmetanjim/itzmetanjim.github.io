@@ -64,15 +64,15 @@ export default function FormsExample() {
     setFormData(prev => ({ ...prev, [field]: event.target.value }));
   };
 
-  const handleSliderChange = (field: string) => (event: any, value: number | number[]) => {
+  const handleSliderChange = (field: string) => (_event: any, value: number | number[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleRatingChange = (field: string) => (event: any, value: number | null) => {
+  const handleRatingChange = (field: string) => (_event: any, value: number | null) => {
     setFormData(prev => ({ ...prev, [field]: value || 0 }));
   };
 
-  const handleAutocompleteChange = (field: string) => (event: any, value: string | null) => {
+  const handleAutocompleteChange = (field: string) => (_event: any, value: string | null) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 

@@ -15,8 +15,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            color: #fff;
+            background: #1e1e1e;
         }
         
         .container {
@@ -29,7 +29,7 @@
             text-align: center;
             margin-bottom: 50px;
             padding: 40px 20px;
-            background: white;
+            background: #101010;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
@@ -42,12 +42,12 @@
         
         .subtitle {
             font-size: 1.2em;
-            color: #666;
+            color: #aaa;
             margin-bottom: 20px;
         }
         
         section {
-            background: white;
+            background: #101010;
             margin-bottom: 30px;
             padding: 30px;
             border-radius: 8px;
@@ -58,7 +58,7 @@
             font-size: 1.8em;
             margin-bottom: 20px;
             font-weight: 600;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 2px solid #252526;
             padding-bottom: 10px;
         }
         
@@ -73,18 +73,28 @@
         }
         
         .project p {
-            color: #555;
+            color: #bbb;
             margin-bottom: 8px;
         }
         
         .project a {
-            color: #0066cc;
+            color: #00cc66;
             text-decoration: none;
             font-weight: 500;
         }
         
         .project a:hover {
             text-decoration: underline;
+        }
+        .project .badge {
+            display: inline-block;
+            background: #2d2d2d;
+            color: #00cc66;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 8px;
         }
         
         .awards-list {
@@ -113,7 +123,7 @@
         }
         
         .contact-info a {
-            color: #0066cc;
+            color: #00cc66;
             text-decoration: none;
             font-weight: 500;
         }
@@ -125,7 +135,7 @@
         footer {
             text-align: center;
             padding: 20px;
-            color: #666;
+            color: #aaa;
             font-size: 0.9em;
         }
         
@@ -147,40 +157,55 @@
 <body>
     <div class="container">
         <header>
-            <h1>👋 Tanjim Kamal</h1>
+            <h1> Tanjim Kamal</h1>
             <p class="subtitle">Student interested in Math, Science, and AI</p>
+            <p>This is a temporary website.</p>
         </header>
-
+        
         <section>
             <h2>Projects</h2>
+            
             <div class="project">
-                <h3>Axiom</h3>
-                <p>Hack club YSWS: Make math/science related app, get RPI/Matlab/5$ per hour grant and even more rewards!</p>
-                <p><a href="https://itzmetanjim.github.io/axiom" target="_blank">Visit Axiom </a></p>
+                <h3>Three-Body Simulation</h3>
+                <p>A 2D plot where each point corresponds to a particle and the color corresponds to the attractor it collides with.</p>
+                <p><a href="https://tanjim.org/three-body" target="_blank">View Demo →</a> | <a href="https://github.com/itzmetanjim/three-body" target="_blank">View on GitHub →</a></p>
             </div>
 
             <div class="project">
-                <h3>LLM Dump in the terminal</h3>
-                <p>LLM dump but in the terninal!</p>
-                <p>Type <code>ssh hackclub.app -p 5022</code> to use</a></p>
+                <h3>Double Pendulum</h3>
+                <p>A 2D plot where each plot corresponds to a double pendulum and the brightness corresponds to the divergence. It reveals many non-divergent pendulums as well as chaotic ones.</p>
+                <p><a href="https://tanjim.org/double-pendulum" target="_blank">View Demo →</a> | <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">View on GitHub →</a></p>
+            </div>
+
+            <div class="project">
+                <h3>DuckyMux</h3>
+                <p>Run multiple programs at the same time on an RP2040/RP2350.</p>
+                <p><a href="https://github.com/itzmetanjim/duckymux" target="_blank">View on GitHub →</a></p>
+            </div>
+
+            <div class="project">
+                <h3>MKCD<span class="badge">3.38k+ downloads</span></h3>
+                <p>Linux utilities for Windows - bringing familiar Linux commands like <code>grep</code>, <code>awk</code>, <code>sed</code>, <code>head</code>, and more to Windows PowerShell and CMD without requiring WSL or separate terminals.</p>
+                <p><a href="https://github.com/itzmetanjim/mkcd" target="_blank">View on GitHub →</a> | <a href="https://pypi.org/project/mkcd/" target="_blank">View on PyPI →</a></p>
             </div>
             
             <div class="project">
                 <h3>LLM Dump</h3>
                 <p>An LLM chat app where you can get access to every single latest AI model with generous ratelimits for completely free.</p>
-                <p><a href="https://llmdump.github.io" target="_blank">Visit LLM Dump </a></p>
+                <p><a href="https://llmdump.github.io" target="_blank">Visit LLM Dump →</a></p>
             </div>
             
             <div class="project">
                 <h3>PyPositron</h3>
                 <p>A Python UI framework for developing UIs with HTML, CSS, JS, Python, and any HTML/CSS/JS framework. Currently in Alpha stage.</p>
-                <p><a href="https://github.com/itzmetanjim/py-positron" target="_blank">View on GitHub </a></p>
+                <p><a href="https://github.com/itzmetanjim/py-positron" target="_blank">View on GitHub →</a></p>
             </div>
         </section>
 
         <section>
             <h2>Major Awards</h2>
             <ul class="awards-list award-major">
+                <li style="margin-inline:auto"><strong>Individual Bronze and Fundamentals Top 10</strong> at World Economics Cup 2025 Continental (Asia & Oceania)</li>
                 <li><strong>Champion and Sajol Kajol Memorial Prize</strong> at National Bangladesh Mathematical Olympiad 2024 (Primary Category) + Primary Camp Participant</li>
                 <li><strong>Winner</strong> at Bangladesh Economics Olympiad 2025 + camp participant</li>
                 <li><strong>Winner</strong> at Bangladesh Economics Olympiad 2025 Camp Test + selected for World Economics Cup 2025</li>
@@ -208,11 +233,13 @@
         <section class="contact-info">
             <h2>Contact</h2>
             <p>Feel free to explore my repositories and open an issue or discussion.</p>
-            <p><a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">Get in touch via GitHub Discussions </a></p>
+            <p><a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">Get in touch via GitHub Discussions →</a></p>
         </section>
 
         <footer>
             <p>&copy; 2025 Tanjim Kamal</p>
+            <p> Click the arrows to see more websites </p>
+            <iframe style="border:none;" src="https://webring.hackclub.com/embed.html" width="90px" height="60px"></iframe>
         </footer>
     </div>
 </body>

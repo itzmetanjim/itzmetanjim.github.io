@@ -16,7 +16,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
             line-height: 1.6;
             color: #fff;
-            background: #1e1e1e;
+            background-image: linear-gradient(45deg,#001e0e,#1e1e1e)
         }
         
         .container {
@@ -27,12 +27,42 @@
         
         header {
             text-align: center;
+            position: relative;
             margin-bottom: 50px;
             padding: 40px 20px;
-            background: #101010;
+            background-image: linear-gradient(45deg,#0bd16bee,#a8dec2ee,#09d6beee);
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: #fefefe;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            
+            overflow: hidden;
+            
         }
+        header::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(14,237,122,1), rgba(12,240,213,1), rgba(13,235,121,1));
+        }
+
+        section::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(14,237,122,1), rgba(12,240,213,1), rgba(13,235,121,1));
+        }
+        header .subtitle{
+            color: #111;
+            text-shadow: none;
+        }
+
         
         h1 {
             font-size: 2.5em;
@@ -47,6 +77,8 @@
         }
         
         section {
+            position:relative;
+            overflow: hidden;
             background: #101010;
             margin-bottom: 30px;
             padding: 30px;

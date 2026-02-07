@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>★ TANJIM KAMAL ★ CHAOS MODE</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Chivo+Mono:wght@400;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hot-pink: #ff1493;
+            --electric-blue: #00bfff;
+            --acid-green: #adff2f;
+            --sunny: #ffd700;
+            --coral: #ff6b6b;
+            --purple-haze: #9b59b6;
+            --void: #0d0d0d;
+            --off-white: #f0f0f0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--void);
+            color: var(--off-white);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        
+        /* Animated Background */
+        .chaos-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .chaos-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--hot-pink) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, var(--electric-blue) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, var(--purple-haze) 0%, transparent 50%);
+            opacity: 0.15;
+            animation: bgPulse 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes bgPulse {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(5deg); }
+        }
+        
+        /* Floating stickers */
+        .sticker {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: floatSticker 15s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .sticker:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .sticker:nth-child(2) { top: 30%; right: 8%; animation-delay: -3s; }
+        .sticker:nth-child(3) { top: 60%; left: 3%; animation-delay: -6s; }
+        .sticker:nth-child(4) { top: 80%; right: 5%; animation-delay: -9s; }
+        .sticker:nth-child(5) { top: 45%; left: 10%; animation-delay: -12s; }
+        
+        @keyframes floatSticker {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(10deg); }
+            75% { transform: translateY(20px) rotate(-10deg); }
+        }
+        
+        .page {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* HERO - MAXIMUM CHAOS */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 4rem 0;
+        }
+        
+        .hero-badge {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            background: var(--acid-green);
+            color: var(--void);
+            padding: 1rem 1.5rem;
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(12deg);
+            box-shadow: 4px 4px 0 var(--void);
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(12deg); }
+            50% { transform: rotate(15deg); }
+        }
+        
+        .name-stack {
+            position: relative;
+            text-align: center;
+        }
+        
+        .name-layer {
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: clamp(3rem, 12vw, 8rem);
+            text-transform: uppercase;
+            line-height: 0.85;
+            position: relative;
+        }
+        
+        .name-layer:nth-child(1) {
+            color: var(--hot-pink);
+            transform: translate(-8px, -8px);
+            z-index: 3;
+        }
+        
+        .name-layer:nth-child(2) {
+            color: var(--electric-blue);
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            z-index: 2;
+        }
+        
+        .name-layer:nth-child(3) {
+            color: var(--sunny);
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 1;
+        }
+        
+        .tagline-chaos {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .tag {
+            padding: 0.5rem 1rem;
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 3px solid currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .tag:nth-child(1) { color: var(--hot-pink); animation-delay: 0s; }
+        .tag:nth-child(2) { color: var(--electric-blue); animation-delay: 0.2s; }
+        .tag:nth-child(3) { color: var(--acid-green); animation-delay: 0.4s; }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 2rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        /* PROJECTS SECTION */
+        .section-header {
+            position: relative;
+            margin: 4rem 0 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--hot-pink), var(--purple-haze));
+            transform: skewX(-3deg);
+        }
+        
+        .section-header h2 {
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 2.5rem;
+            transform: skewX(3deg);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .section-header h2::before {
+            content: '→';
+            font-size: 1.5rem;
+        }
+        
+        .projects-chaos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+        }
+        
+        .project-card {
+            position: relative;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 2px solid rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card::before {
+            content: attr(data-num);
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 6rem;
+            opacity: 0.1;
+            line-height: 1;
+        }
+        
+        .project-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 5px 5px 0 var(--hot-pink), 10px 10px 0 var(--electric-blue);
+        }
+        
+        .project-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-card .mega-badge {
+            display: inline-block;
+            background: var(--acid-green);
+            color: var(--void);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            transform: rotate(-2deg);
+            font-family: 'Chivo Mono', monospace;
+        }
+        
+        .project-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .project-card .links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-card .links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.2s;
+        }
+        
+        .project-card .links a:hover {
+            background: var(--hot-pink);
+            border-color: var(--hot-pink);
+        }
+        
+        /* AWARDS - TICKER STYLE */
+        .awards-ticker {
+            background: var(--sunny);
+            color: var(--void);
+            padding: 1rem 0;
+            margin: 4rem -2rem;
+            overflow: hidden;
+        }
+        
+        .ticker-content {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+        
+        .ticker-content span {
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 1rem;
+            padding: 0 2rem;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* AWARDS GRID */
+        .awards-chaos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .award-card {
+            padding: 1rem;
+            border: 2px dashed rgba(255,255,255,0.2);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .award-card:hover {
+            border-style: solid;
+            border-color: var(--coral);
+        }
+        
+        .award-card::before {
+            content: '★';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--void);
+            padding: 0 0.5rem;
+            color: var(--sunny);
+        }
+        
+        .award-card.major::before {
+            content: '👑';
+        }
+        
+        .award-card strong {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            color: var(--sunny);
+        }
+        
+        .award-card span {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        
+        /* CONTACT */
+        .contact-chaos {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--purple-haze), var(--hot-pink));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-chaos::before {
+            content: 'CONTACT CONTACT CONTACT CONTACT';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-5deg);
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 4rem;
+            opacity: 0.1;
+            white-space: nowrap;
+        }
+        
+        .contact-chaos h2 {
+            font-family: 'Dela Gothic One', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .contact-chaos p {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .chaos-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--void);
+            color: var(--off-white);
+            text-decoration: none;
+            font-family: 'Chivo Mono', monospace;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 3px solid var(--off-white);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .chaos-btn:hover {
+            background: var(--off-white);
+            color: var(--void);
+            transform: translate(-3px, -3px);
+            box-shadow: 3px 3px 0 var(--acid-green);
+        }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            position: relative;
+        }
+        
+        .webring-chaos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .webring-chaos a {
+            font-size: 2rem;
+            color: var(--off-white);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .webring-chaos a:hover {
+            color: var(--hot-pink);
+            transform: scale(1.2);
+        }
+        
+        footer p {
+            font-family: 'Chivo Mono', monospace;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        
+        footer a {
+            color: var(--electric-blue);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .name-layer {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
+            
+            .section-header {
+                margin: 2rem -1rem;
+            }
+            
+            .awards-ticker {
+                margin: 2rem -2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chaos-bg"></div>
+    <span class="sticker">⚡</span>
+    <span class="sticker">🔥</span>
+    <span class="sticker">✨</span>
+    <span class="sticker">🚀</span>
+    <span class="sticker">💫</span>
+    
+    <div class="page">
+        <section class="hero">
+            <div class="hero-badge">STUDENT / BUILDER / CHAOS</div>
+            
+            <div class="name-stack">
+                <div class="name-layer">TANJIM<br>KAMAL</div>
+                <div class="name-layer" aria-hidden="true">TANJIM<br>KAMAL</div>
+                <div class="name-layer" aria-hidden="true">TANJIM<br>KAMAL</div>
+            </div>
+            
+            <div class="tagline-chaos">
+                <span class="tag">MATH</span>
+                <span class="tag">SCIENCE</span>
+                <span class="tag">AI</span>
+            </div>
+            
+            <div class="scroll-indicator">↓</div>
+        </section>
+        
+        <div class="section-header">
+            <h2>PROJECTS</h2>
+        </div>
+        
+        <div class="projects-chaos">
+            <article class="project-card" data-num="01">
+                <h3>Three-Body Simulation</h3>
+                <p>2D chaos visualization — particles colored by their attractor collision destiny.</p>
+                <div class="links">
+                    <a href="https://tanjim.org/three-body" target="_blank">View Site</a>
+                    <a href="https://github.com/itzmetanjim/three-body" target="_blank">GitHub</a>
+                </div>
+            </article>
+            
+            <article class="project-card" data-num="02">
+                <h3>Double Pendulum</h3>
+                <p>Divergence mapping revealing chaos islands and stability seas.</p>
+                <div class="links">
+                    <a href="https://tanjim.org/double-pendulum" target="_blank">View Site</a>
+                    <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">GitHub</a>
+                </div>
+            </article>
+            
+            <article class="project-card" data-num="03">
+                <h3>DuckyMux</h3>
+                <p>Concurrent program execution on RP2040/RP2350 microcontrollers.</p>
+                <div class="links">
+                    <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub</a>
+                </div>
+            </article>
+            
+            <article class="project-card" data-num="04">
+                <h3>MKCD <span class="mega-badge">3.38K+ DL</span></h3>
+                <p>Linux commands for Windows — grep, awk, sed without WSL pain.</p>
+                <div class="links">
+                    <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub</a>
+                    <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
+                </div>
+            </article>
+            
+            <article class="project-card" data-num="05">
+                <h3>LLM Dump</h3>
+                <p>Every AI model. Free. Generous limits. You're welcome.</p>
+                <div class="links">
+                    <a href="https://llmdump.github.io" target="_blank">Visit</a>
+                </div>
+            </article>
+            
+            <article class="project-card" data-num="06">
+                <h3>PyPositron</h3>
+                <p>Python UI framework for HTML/CSS/JS. Alpha phase.</p>
+                <div class="links">
+                    <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub</a>
+                </div>
+            </article>
+        </div>
+        
+        <div class="awards-ticker">
+            <div class="ticker-content">
+                <span>🥉 WORLD ECONOMICS CUP 2025 BRONZE</span>
+                <span>🥇 BDMO 2024 CHAMPION</span>
+                <span>🏆 BDECO 2025 WINNER</span>
+                <span>🥇 BDJSO 2023 CHAMPION</span>
+                <span>🎯 BDPHO 2024 7TH NATIONAL</span>
+                <span>🥉 WORLD ECONOMICS CUP 2025 BRONZE</span>
+                <span>🥇 BDMO 2024 CHAMPION</span>
+                <span>🏆 BDECO 2025 WINNER</span>
+                <span>🥇 BDJSO 2023 CHAMPION</span>
+                <span>🎯 BDPHO 2024 7TH NATIONAL</span>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <h2>AWARDS</h2>
+        </div>
+        
+        <div class="awards-chaos">
+            <div class="award-card major">
+                <strong>Individual Bronze + Top 10</strong>
+                <span>World Economics Cup 2025 (Asia & Oceania)</span>
+            </div>
+            <div class="award-card major">
+                <strong>Champion + Sajol Kajol Prize</strong>
+                <span>National BdMO 2024 (Primary)</span>
+            </div>
+            <div class="award-card major">
+                <strong>National Winner</strong>
+                <span>Bangladesh Economics Olympiad 2025</span>
+            </div>
+            <div class="award-card major">
+                <strong>National Champion</strong>
+                <span>BdJSO 2023 (Primary)</span>
+            </div>
+            <div class="award-card major">
+                <strong>7th Place National</strong>
+                <span>Bangladesh Physics Olympiad 2024</span>
+            </div>
+            <div class="award-card major">
+                <strong>Honorable Mention</strong>
+                <span>National BdMO 2025 (Junior)</span>
+            </div>
+            <div class="award-card">
+                <strong>Physics & Math Champion</strong>
+                <span>CGC Science Fusion 2025</span>
+            </div>
+            <div class="award-card">
+                <strong>Physics & Math Champion</strong>
+                <span>KnowledgeHive Alpha 2024</span>
+            </div>
+            <div class="award-card">
+                <strong>Science & Math Champion</strong>
+                <span>NFGGHS Brainwave 2023</span>
+            </div>
+            <div class="award-card">
+                <strong>Regional Champion</strong>
+                <span>Cumilla BdPhO (Category A)</span>
+            </div>
+        </div>
+        
+        <section class="contact-chaos">
+            <h2>LET'S CONNECT</h2>
+            <p>Open an issue, start a discussion, or just vibe.</p>
+            <div class="contact-buttons">
+                <a href="https://github.com/itzmetanjim" class="chaos-btn" target="_blank">GitHub</a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" class="chaos-btn" target="_blank">Discussions</a>
+                <a href="/pgp.txt" class="chaos-btn">PGP Key</a>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="webring-chaos">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+            <p>© 2025 TANJIM KAMAL</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Kamal — Portfolio</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #faf8f5;
+            --paper: #f5f2ed;
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --accent: #c41e3a;
+            --rule: #d4d0c8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 18px;
+        }
+        
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Masthead */
+        .masthead {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .masthead-left,
+        .masthead-right {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+        }
+        
+        .masthead-center h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        
+        .masthead-center .subtitle {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--ink-light);
+            margin-top: 0.25rem;
+        }
+        
+        /* Navigation */
+        nav {
+            padding: 1rem 0;
+            border-bottom: 3px double var(--rule);
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+        
+        nav a {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1px 1fr;
+            gap: 4rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .hero-divider {
+            background: var(--rule);
+        }
+        
+        .hero-intro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hero-intro .issue-number {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-intro h2 {
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-intro .deck {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--ink-light);
+            line-height: 1.6;
+        }
+        
+        .hero-stats {
+            padding: 2rem 0;
+        }
+        
+        .stat-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+        
+        /* Projects Section */
+        .section-header {
+            padding: 3rem 0 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .section-header h2 {
+            font-size: 0.7rem;
+            font-family: 'Archivo', sans-serif;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+        }
+        
+        .projects-layout {
+            display: grid;
+            grid-template-columns: 2fr 1px 1fr;
+            gap: 3rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .projects-main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        
+        .project-feature {
+            position: relative;
+        }
+        
+        .project-feature::first-letter {
+            font-size: 4rem;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .project-feature h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            display: inline;
+        }
+        
+        .project-feature .badge {
+            display: inline-block;
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+        
+        .project-feature p {
+            font-size: 1rem;
+            color: var(--ink-light);
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .project-feature .links {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .project-feature .links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-right: 1.5rem;
+        }
+        
+        .project-feature .links a:hover {
+            text-decoration: underline;
+        }
+        
+        .projects-sidebar {
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-title {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .sidebar-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dotted var(--rule);
+        }
+        
+        .sidebar-item h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+        
+        .sidebar-item p {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            font-style: italic;
+        }
+        
+        .sidebar-item a {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Awards Section */
+        .awards-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .awards-column h3 {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ink);
+        }
+        
+        .award-item {
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .award-item::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.6rem;
+            top: 0.4rem;
+        }
+        
+        .award-item strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .award-item span {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            font-style: italic;
+        }
+        
+        /* Pull Quote */
+        .pull-quote {
+            padding: 3rem;
+            text-align: center;
+            border-bottom: 1px solid var(--rule);
+        }
+        
+        .pull-quote blockquote {
+            font-size: 2rem;
+            font-style: italic;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .pull-quote blockquote::before,
+        .pull-quote blockquote::after {
+            font-size: 4rem;
+            color: var(--rule);
+            line-height: 0;
+            position: relative;
+        }
+        
+        .pull-quote blockquote::before {
+            content: '"';
+            margin-right: 0.25rem;
+        }
+        
+        .pull-quote blockquote::after {
+            content: '"';
+            margin-left: 0.25rem;
+        }
+        
+        /* Contact */
+        .contact-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section p {
+            font-style: italic;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .contact-links a {
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--ink);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            background: var(--ink);
+            color: var(--cream);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 3px double var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Archivo', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+        }
+        
+        .webring {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .webring a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+        
+        footer a {
+            color: var(--ink-light);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 900px) {
+            .masthead {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .hero,
+            .projects-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-divider,
+            .projects-layout > div:nth-child(2) {
+                display: none;
+            }
+            
+            .awards-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="masthead">
+            <div class="masthead-left">Est. 2024</div>
+            <div class="masthead-center">
+                <h1>Tanjim Kamal</h1>
+                <p class="subtitle">Mathematics • Science • Artificial Intelligence</p>
+            </div>
+            <div class="masthead-right">Personal Portfolio</div>
+        </header>
+        
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#awards">Awards</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        
+        <section class="hero">
+            <div class="hero-intro">
+                <span class="issue-number">About</span>
+                <h2>Student exploring the boundaries of chaos and order</h2>
+                <p class="deck">Building simulations, tools, and frameworks at the intersection of mathematics, physics, and computer science.</p>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Major Awards</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3.4k</div>
+                    <div class="stat-label">Package Downloads</div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="section-header" id="projects">
+            <h2>Selected Works</h2>
+        </div>
+        
+        <section class="projects-layout">
+            <div class="projects-main">
+                <article class="project-feature">
+                    <h3>Three-Body Simulation</h3>
+                    <p>A comprehensive visualization of the three-body problem, one of the most fascinating unsolved problems in classical mechanics. Each point in this 2D plot corresponds to a particle, with colors indicating which of three massive attractors the particle eventually collides with. The resulting patterns reveal the chaotic, yet beautiful nature of gravitational dynamics.</p>
+                    <div class="links">
+                        <a href="https://tanjim.org/three-body" target="_blank">View Site</a>
+                        <a href="https://github.com/itzmetanjim/three-body" target="_blank">Source Code</a>
+                    </div>
+                </article>
+                
+                <article class="project-feature">
+                    <h3>Double Pendulum Divergence Map</h3>
+                    <p>Double pendulums are deceptively simple systems that exhibit profoundly chaotic behavior. This visualization maps initial conditions to their eventual divergence, with brightness indicating the degree of chaos. The result reveals unexpected islands of stability amidst seas of unpredictability—a visual proof of sensitive dependence on initial conditions.</p>
+                    <div class="links">
+                        <a href="https://tanjim.org/double-pendulum" target="_blank">View Site</a>
+                        <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">Source Code</a>
+                    </div>
+                </article>
+                
+                <article class="project-feature">
+                    <h3>MKCD</h3> <span class="badge">3.38k+ downloads</span>
+                    <p>Linux power users who work on Windows often miss the elegance of commands like grep, awk, and sed. MKCD bridges this gap, bringing these beloved utilities to PowerShell and CMD without the overhead of WSL or Cygwin. Clean, fast, and familiar.</p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub</a>
+                        <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="hero-divider"></div>
+            
+            <aside class="projects-sidebar">
+                <h3 class="sidebar-title">Also Noteworthy</h3>
+                
+                <div class="sidebar-item">
+                    <h4>DuckyMux</h4>
+                    <p>Concurrent program execution on RP2040/RP2350</p>
+                    <a href="https://github.com/itzmetanjim/duckymux" target="_blank">View →</a>
+                </div>
+                
+                <div class="sidebar-item">
+                    <h4>LLM Dump</h4>
+                    <p>Free access to latest AI models</p>
+                    <a href="https://llmdump.github.io" target="_blank">Visit →</a>
+                </div>
+                
+                <div class="sidebar-item">
+                    <h4>PyPositron</h4>
+                    <p>Python UI framework (Alpha)</p>
+                    <a href="https://github.com/itzmetanjim/py-positron" target="_blank">View →</a>
+                </div>
+            </aside>
+        </section>
+        
+        <div class="pull-quote">
+            <blockquote>Exploring the beautiful chaos where mathematics meets reality</blockquote>
+        </div>
+        
+        <div class="section-header" id="awards">
+            <h2>Recognition</h2>
+        </div>
+        
+        <section class="awards-layout">
+            <div class="awards-column">
+                <h3>Major Achievements</h3>
+                
+                <div class="award-item">
+                    <strong>Individual Bronze & Fundamentals Top 10</strong>
+                    <span>World Economics Cup 2025 (Asia & Oceania)</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>Champion & Sajol Kajol Memorial Prize</strong>
+                    <span>National BdMO 2024 (Primary)</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>National Winner</strong>
+                    <span>Bangladesh Economics Olympiad 2025</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>National Champion</strong>
+                    <span>BdJSO 2023 (Primary)</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>7th Place National</strong>
+                    <span>Bangladesh Physics Olympiad 2024</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>Honorable Mention</strong>
+                    <span>National BdMO 2025 (Junior)</span>
+                </div>
+            </div>
+            
+            <div class="awards-column">
+                <h3>Other Recognition</h3>
+                
+                <div class="award-item">
+                    <strong>Physics & Math Double Champion</strong>
+                    <span>CGC Science Fusion 2025</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>Physics & Math Double Champion</strong>
+                    <span>KnowledgeHive Alpha 2024</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>Science & Math Double Champion</strong>
+                    <span>NFGGHS Brainwave 2023</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>Regional Champion</strong>
+                    <span>Cumilla BdPhO (Category A)</span>
+                </div>
+                
+                <div class="award-item">
+                    <strong>1st Runner Up</strong>
+                    <span>CZS Science Carnival Quiz 2022</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-section" id="contact">
+            <h2>Get in Touch</h2>
+            <p>Explore my repositories and feel free to open an issue or discussion.</p>
+            <div class="contact-links">
+                <a href="https://github.com/itzmetanjim" target="_blank">GitHub</a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">Discussions</a>
+                <a href="/pgp.txt">PGP Key</a>
+            </div>
+        </section>
+        
+        <footer>
+            <span>© 2025 Tanjim Kamal</span>
+            <div class="webring">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Kamal — Organic Portfolio</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --earth: #2d3a2d;
+            --moss: #4a5d4a;
+            --sage: #8fae8f;
+            --cream: #f5f2eb;
+            --sand: #e8e2d5;
+            --warm: #d4c5a9;
+            --bark: #5c4a3d;
+            --clay: #c17f59;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--cream);
+            color: var(--earth);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Decorative Blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--sage);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+        
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: var(--warm);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -7s;
+        }
+        
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: var(--clay);
+            top: 50%;
+            right: 10%;
+            opacity: 0.2;
+            animation-delay: -14s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 10px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+        
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 6rem 0 4rem;
+        }
+        
+        .leaf-decoration {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .leaf-decoration::before,
+        .leaf-decoration::after {
+            content: '🌿';
+            font-size: 2rem;
+            position: absolute;
+        }
+        
+        .leaf-decoration::before {
+            left: 0;
+            transform: scaleX(-1);
+        }
+        
+        .leaf-decoration::after {
+            right: 0;
+        }
+        
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 7vw, 4rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--earth), var(--moss));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--moss);
+            font-weight: 300;
+        }
+        
+        /* Organic Card Style */
+        .organic-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 
+                0 4px 20px rgba(45, 58, 45, 0.08),
+                0 1px 3px rgba(45, 58, 45, 0.05);
+            border: 1px solid rgba(143, 174, 143, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .organic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at top right, rgba(143, 174, 143, 0.15), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--sage);
+            border-radius: 50%;
+        }
+        
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .project-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1.25rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(143, 174, 143, 0.08), rgba(212, 197, 169, 0.05));
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(45, 58, 45, 0.1);
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sage), var(--moss));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .project-content h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-content .badge {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: var(--clay);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+        }
+        
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--moss);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-links a {
+            font-size: 0.85rem;
+            color: var(--bark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+        }
+        
+        .project-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--sage);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-links a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Awards Section */
+        .awards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .awards-column h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: var(--bark);
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--warm);
+        }
+        
+        .award-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(143, 174, 143, 0.05);
+            border-radius: 12px;
+            transition: background 0.3s ease;
+        }
+        
+        .award-item:hover {
+            background: rgba(143, 174, 143, 0.12);
+        }
+        
+        .award-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .award-content strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--earth);
+        }
+        
+        .award-content span {
+            font-size: 0.85rem;
+            color: var(--moss);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 1rem 0;
+        }
+        
+        .contact-section p {
+            color: var(--moss);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.5rem;
+            background: linear-gradient(135deg, var(--moss), var(--earth));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 58, 45, 0.2);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 58, 45, 0.3);
+        }
+        
+        .contact-btn.secondary {
+            background: white;
+            color: var(--earth);
+            border: 2px solid var(--sage);
+            box-shadow: none;
+        }
+        
+        .contact-btn.secondary:hover {
+            background: var(--sage);
+            color: white;
+            border-color: var(--sage);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: var(--moss);
+            font-size: 0.9rem;
+        }
+        
+        .webring {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .webring a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: var(--earth);
+            text-decoration: none;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(45, 58, 45, 0.1);
+        }
+        
+        .webring a:hover {
+            background: var(--sage);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        footer a {
+            color: var(--bark);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 600px) {
+            .organic-card {
+                padding: 1.5rem;
+                border-radius: 20px;
+            }
+            
+            .project-item {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-icon {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    
+    <div class="page">
+        <header>
+            <div class="leaf-decoration"></div>
+            <h1>Tanjim Kamal</h1>
+            <p class="tagline">Student exploring Math, Science, and AI</p>
+        </header>
+        
+        <section class="organic-card">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <article class="project-item">
+                    <div class="project-icon">🌌</div>
+                    <div class="project-content">
+                        <h3>Three-Body Simulation</h3>
+                        <p>A 2D visualization where each point represents a particle, colored by which attractor it collides with.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/three-body" target="_blank">View Site →</a>
+                            <a href="https://github.com/itzmetanjim/three-body" target="_blank">GitHub →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-icon">🔄</div>
+                    <div class="project-content">
+                        <h3>Double Pendulum</h3>
+                        <p>Divergence mapping of double pendulums—brightness reveals chaotic vs stable initial conditions.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/double-pendulum" target="_blank">View Site →</a>
+                            <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">GitHub →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-icon">🦆</div>
+                    <div class="project-content">
+                        <h3>DuckyMux</h3>
+                        <p>Run multiple programs simultaneously on RP2040/RP2350 microcontrollers.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-icon">💻</div>
+                    <div class="project-content">
+                        <h3>MKCD <span class="badge">3.38k+ downloads</span></h3>
+                        <p>Linux utilities for Windows—grep, awk, sed, and more for PowerShell and CMD.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub →</a>
+                            <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-content">
+                        <h3>LLM Dump</h3>
+                        <p>Access every latest AI model with generous rate limits, completely free.</p>
+                        <div class="project-links">
+                            <a href="https://llmdump.github.io" target="_blank">Visit →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-item">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-content">
+                        <h3>PyPositron</h3>
+                        <p>Python UI framework for HTML/CSS/JS interfaces. Currently in Alpha stage.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section class="organic-card">
+            <h2 class="section-title">Awards & Recognition</h2>
+            <div class="awards-container">
+                <div class="awards-column">
+                    <h3>Major Achievements</h3>
+                    <div class="award-item">
+                        <span class="award-icon">🥉</span>
+                        <div class="award-content">
+                            <strong>Individual Bronze & Top 10 Fundamentals</strong>
+                            <span>World Economics Cup 2025 (Asia & Oceania)</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🥇</span>
+                        <div class="award-content">
+                            <strong>Champion & Sajol Kajol Memorial Prize</strong>
+                            <span>National BdMO 2024 (Primary)</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🏆</span>
+                        <div class="award-content">
+                            <strong>Winner</strong>
+                            <span>Bangladesh Economics Olympiad 2025</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🥇</span>
+                        <div class="award-content">
+                            <strong>National Champion</strong>
+                            <span>BdJSO 2023 (Primary)</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🎯</span>
+                        <div class="award-content">
+                            <strong>7th Place National</strong>
+                            <span>Bangladesh Physics Olympiad 2024</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🌟</span>
+                        <div class="award-content">
+                            <strong>Honorable Mention</strong>
+                            <span>National BdMO 2025 (Junior)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="awards-column">
+                    <h3>Other Recognition</h3>
+                    <div class="award-item">
+                        <span class="award-icon">🌿</span>
+                        <div class="award-content">
+                            <strong>Physics & Math Champion</strong>
+                            <span>CGC Science Fusion 2025</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🌿</span>
+                        <div class="award-content">
+                            <strong>Physics & Math Champion</strong>
+                            <span>KnowledgeHive Alpha 2024</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🌿</span>
+                        <div class="award-content">
+                            <strong>Science & Math Champion</strong>
+                            <span>NFGGHS Brainwave 2023</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🌿</span>
+                        <div class="award-content">
+                            <strong>Regional Champion</strong>
+                            <span>Cumilla BdPhO (Category A)</span>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-icon">🌿</span>
+                        <div class="award-content">
+                            <strong>1st Runner Up</strong>
+                            <span>CZS Science Carnival Quiz 2022</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="organic-card contact-section">
+            <h2 class="section-title">Get in Touch</h2>
+            <p>Feel free to explore my repositories and start a discussion.</p>
+            <div class="contact-buttons">
+                <a href="https://github.com/itzmetanjim" class="contact-btn" target="_blank">
+                    GitHub
+                </a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" class="contact-btn secondary" target="_blank">
+                    Discussions
+                </a>
+                <a href="/pgp.txt" class="contact-btn secondary">
+                    PGP Key
+                </a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 Tanjim Kamal</p>
+            <div class="webring">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

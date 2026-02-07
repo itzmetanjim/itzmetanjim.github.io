@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tanjim@kamal:~$</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terminal-bg: #0c0c0c;
+            --terminal-green: #00ff41;
+            --terminal-green-dim: #00aa2a;
+            --terminal-cyan: #00ffff;
+            --terminal-yellow: #ffff00;
+            --terminal-red: #ff3333;
+            --terminal-purple: #ff79c6;
+            --terminal-white: #f8f8f2;
+            --terminal-gray: #6272a4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 15px;
+        }
+        
+        body {
+            font-family: 'Fira Code', monospace;
+            background: var(--terminal-bg);
+            color: var(--terminal-green);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Scanlines */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9998;
+        }
+        
+        /* CRT flicker */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(18, 16, 16, 0);
+            pointer-events: none;
+            z-index: 9999;
+            animation: flicker 0.15s infinite;
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0.27861; }
+            5% { opacity: 0.34769; }
+            10% { opacity: 0.23604; }
+            15% { opacity: 0.90626; }
+            20% { opacity: 0.18128; }
+            25% { opacity: 0.83891; }
+            30% { opacity: 0.65583; }
+            35% { opacity: 0.67807; }
+            40% { opacity: 0.26559; }
+            45% { opacity: 0.84693; }
+            50% { opacity: 0.96019; }
+            55% { opacity: 0.08594; }
+            60% { opacity: 0.20313; }
+            65% { opacity: 0.71988; }
+            70% { opacity: 0.53455; }
+            75% { opacity: 0.37288; }
+            80% { opacity: 0.71428; }
+            85% { opacity: 0.70419; }
+            90% { opacity: 0.7003; }
+            95% { opacity: 0.36108; }
+            100% { opacity: 0.24387; }
+        }
+        
+        .terminal {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        /* Terminal Window */
+        .window {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+        }
+        
+        .window-header {
+            background: #2d2d2d;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        
+        .window-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .window-btn.close { background: #ff5f56; }
+        .window-btn.min { background: #ffbd2e; }
+        .window-btn.max { background: #27ca40; }
+        
+        .window-title {
+            margin-left: 1rem;
+            font-size: 0.8rem;
+            color: var(--terminal-gray);
+        }
+        
+        .window-content {
+            padding: 1.5rem;
+            min-height: 100px;
+        }
+        
+        /* Prompt style */
+        .prompt {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        
+        .prompt-user {
+            color: var(--terminal-cyan);
+        }
+        
+        .prompt-at {
+            color: var(--terminal-gray);
+        }
+        
+        .prompt-host {
+            color: var(--terminal-purple);
+        }
+        
+        .prompt-dir {
+            color: var(--terminal-yellow);
+        }
+        
+        .prompt-symbol {
+            color: var(--terminal-green);
+            margin-left: 0.5rem;
+        }
+        
+        .command {
+            color: var(--terminal-white);
+            margin-left: 0.5rem;
+        }
+        
+        /* Cursor */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background: var(--terminal-green);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        /* ASCII Art */
+        .ascii-art {
+            color: var(--terminal-green);
+            white-space: pre;
+            font-size: 0.65rem;
+            line-height: 1.2;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        /* Output */
+        .output {
+            margin: 1rem 0;
+        }
+        
+        .output-line {
+            margin-bottom: 0.25rem;
+        }
+        
+        .comment {
+            color: var(--terminal-gray);
+        }
+        
+        .highlight {
+            color: var(--terminal-yellow);
+        }
+        
+        .success {
+            color: var(--terminal-green);
+        }
+        
+        .link {
+            color: var(--terminal-cyan);
+            text-decoration: none;
+        }
+        
+        .link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Table-like output */
+        .table-output {
+            margin: 1rem 0;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #333;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .table-key {
+            color: var(--terminal-purple);
+        }
+        
+        .table-value {
+            color: var(--terminal-white);
+        }
+        
+        .table-value a {
+            color: var(--terminal-cyan);
+            text-decoration: none;
+        }
+        
+        .table-value a:hover {
+            text-decoration: underline;
+        }
+        
+        .badge {
+            color: var(--terminal-bg);
+            background: var(--terminal-green);
+            padding: 0 0.4rem;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Progress bar */
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-bar span:first-child {
+            min-width: 150px;
+        }
+        
+        .bar {
+            flex: 1;
+            height: 1rem;
+            background: #333;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bar-fill {
+            height: 100%;
+            background: var(--terminal-green);
+        }
+        
+        /* List output */
+        .list-output {
+            margin: 1rem 0;
+        }
+        
+        .list-item {
+            display: flex;
+            gap: 1rem;
+            padding: 0.5rem 0;
+        }
+        
+        .list-bullet {
+            color: var(--terminal-yellow);
+        }
+        
+        .list-content strong {
+            color: var(--terminal-cyan);
+        }
+        
+        .list-content span {
+            color: var(--terminal-gray);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--terminal-gray);
+            font-size: 0.85rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--terminal-green);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 600px) {
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+            
+            .ascii-art {
+                font-size: 0.45rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="window">
+            <div class="window-header">
+                <span class="window-btn close"></span>
+                <span class="window-btn min"></span>
+                <span class="window-btn max"></span>
+                <span class="window-title">tanjim@kamal: ~</span>
+            </div>
+            <div class="window-content">
+                <pre class="ascii-art">
+ _____          _   _ _ ___ __  __   _  __    _    __  __    _    _     
+|_   _|_ _ _ __(_) (_) |_ _|  \/  | | |/ /   / \  |  \/  |  / \  | |    
+  | |/ _` | '_ | | | | || || |\/| | | ' /   / _ \ | |\/| | / _ \ | |    
+  | | (_| | | || | | | || || |  | | | . \  / ___ \| |  | |/ ___ \| |___ 
+  |_|\__,_|_| |_|_|_|_|___|_|  |_| |_|\_\/_/   \_\_|  |_/_/   \_\_____|
+                </pre>
+                
+                <div class="prompt">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="command">whoami</span>
+                </div>
+                <div class="output">
+                    <p class="output-line">Student | Builder | Math & Science Enthusiast</p>
+                    <p class="output-line comment"># Exploring the intersection of mathematics, physics, and AI</p>
+                </div>
+                
+                <div class="prompt">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="command">cat interests.txt</span>
+                </div>
+                <div class="output">
+                    <p class="output-line">[<span class="success">✓</span>] Mathematics</p>
+                    <p class="output-line">[<span class="success">✓</span>] Physics</p>
+                    <p class="output-line">[<span class="success">✓</span>] Artificial Intelligence</p>
+                    <p class="output-line">[<span class="success">✓</span>] Chaos Theory</p>
+                    <p class="output-line">[<span class="success">✓</span>] Embedded Systems</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="window">
+            <div class="window-header">
+                <span class="window-btn close"></span>
+                <span class="window-btn min"></span>
+                <span class="window-btn max"></span>
+                <span class="window-title">projects.sh</span>
+            </div>
+            <div class="window-content">
+                <div class="prompt">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~/projects</span><span class="prompt-symbol">$</span>
+                    <span class="command">ls -la</span>
+                </div>
+                
+                <div class="table-output">
+                    <div class="table-row">
+                        <span class="table-key">three-body/</span>
+                        <span class="table-value">2D chaos visualization of gravitational dynamics <a href="https://tanjim.org/three-body" target="_blank">[view]</a> <a href="https://github.com/itzmetanjim/three-body" target="_blank">[src]</a></span>
+                    </div>
+                    <div class="table-row">
+                        <span class="table-key">double-pendulum/</span>
+                        <span class="table-value">Divergence mapping of chaotic pendulum systems <a href="https://tanjim.org/double-pendulum" target="_blank">[view]</a> <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">[src]</a></span>
+                    </div>
+                    <div class="table-row">
+                        <span class="table-key">duckymux/</span>
+                        <span class="table-value">Concurrent execution on RP2040/RP2350 <a href="https://github.com/itzmetanjim/duckymux" target="_blank">[src]</a></span>
+                    </div>
+                    <div class="table-row">
+                        <span class="table-key">mkcd/</span>
+                        <span class="table-value">Linux utils for Windows <span class="badge">3.38k+ downloads</span> <a href="https://github.com/itzmetanjim/mkcd" target="_blank">[src]</a> <a href="https://pypi.org/project/mkcd/" target="_blank">[pypi]</a></span>
+                    </div>
+                    <div class="table-row">
+                        <span class="table-key">llm-dump/</span>
+                        <span class="table-value">Free access to latest AI models <a href="https://llmdump.github.io" target="_blank">[visit]</a></span>
+                    </div>
+                    <div class="table-row">
+                        <span class="table-key">py-positron/</span>
+                        <span class="table-value">Python UI framework (Alpha) <a href="https://github.com/itzmetanjim/py-positron" target="_blank">[src]</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="window">
+            <div class="window-header">
+                <span class="window-btn close"></span>
+                <span class="window-btn min"></span>
+                <span class="window-btn max"></span>
+                <span class="window-title">achievements.log</span>
+            </div>
+            <div class="window-content">
+                <div class="prompt">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="command">cat /var/log/achievements.log | grep "MAJOR"</span>
+                </div>
+                
+                <div class="list-output">
+                    <div class="list-item">
+                        <span class="list-bullet">[2025]</span>
+                        <div class="list-content">
+                            <strong>Individual Bronze + Top 10 Fundamentals</strong>
+                            <span>// World Economics Cup 2025 (Asia & Oceania)</span>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-bullet">[2024]</span>
+                        <div class="list-content">
+                            <strong>Champion + Sajol Kajol Memorial Prize</strong>
+                            <span>// National BdMO 2024 (Primary)</span>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-bullet">[2025]</span>
+                        <div class="list-content">
+                            <strong>National Winner</strong>
+                            <span>// Bangladesh Economics Olympiad 2025</span>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-bullet">[2023]</span>
+                        <div class="list-content">
+                            <strong>National Champion</strong>
+                            <span>// BdJSO 2023 (Primary)</span>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-bullet">[2024]</span>
+                        <div class="list-content">
+                            <strong>7th Place National + Camp</strong>
+                            <span>// Bangladesh Physics Olympiad 2024</span>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-bullet">[2025]</span>
+                        <div class="list-content">
+                            <strong>Honorable Mention</strong>
+                            <span>// National BdMO 2025 (Junior)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="prompt" style="margin-top: 1.5rem;">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="command">cat /var/log/achievements.log | grep "OTHER" | head -5</span>
+                </div>
+                
+                <div class="output">
+                    <p class="output-line comment"># CGC Science Fusion 2025 — Physics & Math Champion</p>
+                    <p class="output-line comment"># KnowledgeHive Alpha 2024 — Physics & Math Champion</p>
+                    <p class="output-line comment"># NFGGHS Brainwave 2023 — Science & Math Champion</p>
+                    <p class="output-line comment"># Cumilla Regional BdPhO — Champion (Category A)</p>
+                    <p class="output-line comment"># CZS Science Carnival 2022 — Quiz 1st Runner Up</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="window">
+            <div class="window-header">
+                <span class="window-btn close"></span>
+                <span class="window-btn min"></span>
+                <span class="window-btn max"></span>
+                <span class="window-title">contact.sh</span>
+            </div>
+            <div class="window-content">
+                <div class="prompt">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="command">./contact.sh</span>
+                </div>
+                
+                <div class="output">
+                    <p class="output-line">Initializing contact protocols...</p>
+                    <p class="output-line">[<span class="success">OK</span>] GitHub: <a href="https://github.com/itzmetanjim" class="link" target="_blank">https://github.com/itzmetanjim</a></p>
+                    <p class="output-line">[<span class="success">OK</span>] Discussions: <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" class="link" target="_blank">Open a thread</a></p>
+                    <p class="output-line">[<span class="success">OK</span>] PGP Key: <a href="/pgp.txt" class="link">/pgp.txt</a></p>
+                    <p class="output-line"></p>
+                    <p class="output-line success">Ready to receive transmissions.</p>
+                </div>
+                
+                <div class="prompt" style="margin-top: 1rem;">
+                    <span class="prompt-user">tanjim</span><span class="prompt-at">@</span><span class="prompt-host">kamal</span>:<span class="prompt-dir">~</span><span class="prompt-symbol">$</span>
+                    <span class="cursor"></span>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="https://www.hasnat4763.me" title="Previous">[ ← prev ]</a>
+                <a href="https://www.twonum.org/" title="Next">[ next → ]</a>
+            </div>
+            <p>© 2025 tanjim@kamal:~$ echo "All Rights Reserved"</p>
+        </footer>
+    </div>
+</body>
+</html>

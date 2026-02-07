@@ -143,7 +143,6 @@
         .award-ticker li strong {
             display: block;
             color: var(--accent);
-            margin-bottom: 0.2rem;
         }
         
         .content {
@@ -173,7 +172,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2rem;
         }
         
         .project-card {
@@ -213,7 +211,7 @@
             display: inline-block;
             background: var(--ink);
             color: var(--bg);
-            font-size: 0.75rem;
+            font-size: 1rem;
             padding: 0.2rem 0.4rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -367,28 +365,22 @@
             <div class="sidebar-section">
                 <h2>MAJOR AWARDS</h2>
                 <ul class="award-ticker">
-                    <li><strong>CHAMPION</strong>Bangladesh Economics Olympiad 2026 National</li>
-                    <li><strong>INDIVIDUAL BRONZE + FUNDAMENTALS TOP 10</strong>World Economics Cup 2025 Continental (Asia & Oceania)</li>
-                    <li><strong>CHAMPION + SAJOL KAJOL MEMORIAL PRIZE</strong>National Bangladesh Mathematical Olympiad 2024 (Primary Category) + Primary Camp Participant</li>
-                    <li><strong>WINNER</strong> National Bangladesh Economics Olympiad 2025 + camp participant</li>
-                    <li><strong>WINNER</strong> National Bangladesh Economics Olympiad 2025 Camp Test + selected for World Economics Cup 2025</li>
-                    <li><strong>CHAMPION</strong>BdJSO National 2023 (Primary Category)</li>
-                    <li><strong>7TH PLACE</strong>Bangladesh Physics Olympiad 2024 National (Category A) + camp participant</li>
-                    <li><strong>HONORABLE MENTION</strong>National Bangladesh Mathematical Olympiad 2025 (Junior Category) + Junior Camp Participant</li>
+                    <li><strong>BRONZE + TOP 10</strong>World Economics Cup 2025 (Asia & Oceania)</li>
+                    <li><strong>CHAMPION + SAJOL KAJOL PRIZE</strong>BdMO National 2024 Primary </li>
+                    <li><strong>WINNER</strong>Bangladesh Economics Olympiad 2025</li>
+                    <li><strong>CHAMPION</strong>BdJSO National 2023</li>
+                    <li><strong>7TH PLACE</strong>BdPhO 2024 National</li>
+                    <li><strong>HONORABLE MENTION</strong>BdMO 2025 Junior</li>
                 </ul>
             </div>
             
             <div class="sidebar-section">
                 <h2>OTHER RECOGNITION</h2>
                 <ul class="award-ticker">
-                    <li><strong>CHAMPION</strong>Comilla Government College Science Fusion 2025 Physics Olympiad</li>
-                    <li><strong>CHAMPION</strong>Comilla Government College Science Fusion 2025 Math Olympiad</li>
-                    <li><strong>CHAMPION</strong>KnowledgeHive Alpha 1.0 2024 Physics Olympiad</li>
-                    <li><strong>CHAMPION</strong>KnowledgeHive Alpha 1.0 2024 Math Olympiad</li>
-                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0 Science Olympiad</li>
-                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0 Math Olympiad</li>
-                    <li><strong>CHAMPION</strong>Cumilla Regional Bangladesh Physics Olympiad (Category A)</li>
-                    <li><strong>1ST RUNNER UP</strong>Comilla Zilla School Science Carnival 3.0 2022 Science Quiz</li>
+                    <li>Cumilla Govt. College Science Fusion 2025 - Physics & Math Champion</li>
+                    <li>KnowledgeHive Alpha 2024 - Physics & Math Champion</li>
+                    <li>NFSSC Brainwave 2023 - Science & Math Champion</li>
+                    <li>Cumilla Regional BdPhO - Champion</li>
                 </ul>
             </div>
         </aside>
@@ -403,33 +395,6 @@
             
             <div class="projects-grid">
                 <article class="project-card" data-number="01">
-                    <h3>Shelledit</h3>
-                    <p>Full-fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive set of 150+ shortcuts to be as fast as Vim while 10x easier to learn.</p>
-                    <div class="links">
-                        <a href="https://github.com/itzmetanjim/shelledit/releases/tag/v0.1.0" target="_blank">Download</a>
-                        <a href="https://github.com/itzmetanjim/shelledit" target="_blank">GitHub</a>
-                    </div>
-                </article>
-                
-                <article class="project-card" data-number="02">
-                    <h3>curSH <span class="badge">3.67K+ downloads</span></h3>
-                    <p>Replace dangerous <code>curl|sh</code> "easy install" scripts with a safe alternative. One can <code>rm -rf</code> your root directory; the other provides advanced cryptographical verification.</p>
-                    <div class="links">
-                        <a href="https://pypi.org/project/cursh/" target="_blank">PyPI</a>
-                        <a href="https://github.com/itzmetanjim/cursh" target="_blank">GitHub</a>
-                    </div>
-                </article>
-                
-                <article class="project-card" data-number="03">
-                    <h3>PyPositron <span class="badge">12.91k+ downloads</span></h3>
-                    <p>A Python UI framework for developing interfaces with HTML, CSS, JS, and Python. Currently in Alpha.</p>
-                    <div class="links">
-                        <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub</a>
-                        <a href="https://pypi.org/project/py-positron/" target="_blank">PyPI</a>
-                    </div>
-                </article>
-                
-                <article class="project-card" data-number="04">
                     <h3>TINAC: Tinac Is Not A CAPTCHA</h3>
                     <p>A new kind of CAPTCHA. You drag a slider until the noisy image suddenly snaps to readable text then input it. Supports JWT. Decoys are generated using Markov Chains to make ML harder.</p>
                     <div class="links">
@@ -437,17 +402,39 @@
                         <a href="https://github.com/itzmetanjim/tinac" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
-                <article class="project-card" data-number="05">
-                    <h3>MKCD <span class="badge">4.41K+ downloads</span></h3>
-                    <p>Linux utilities for Windows - bringing familiar Linux commands like <code>grep</code>, <code>awk</code>, <code>sed</code>, <code>head</code>, and more to Windows PowerShell and CMD without requiring WSL or separate terminals.</p>
+                <article class="project-card" data-number="01">
+                    <h3>curSH<span class="badge">3.67K+ downloads</span></h3>
+                    <p>Replace dangerous <code>curl|sh</code> "easy install" scripts with a safe alternative. One can <code>rm -rf</code> your root directory; the other provides advanced cryptographical verification.</p>
                     <div class="links">
-                        <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub</a>
-                        <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
+                        <a href="https://pypi.org/project/cursh/" target="_blank">PyPI</a>
+                        <a href="https://github.com/itzmetanjim/cursh" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
-                <article class="project-card" data-number="06">
+                <article class="project-card" data-number="01">
+                    <h3>Clickey</h3>
+                    <p>Productivity chrome extension. Click on-screen buttons using keyboard keys in 3 keypresses.</p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/clickey/" target="_blank">Download on GitHub</a>
+                        <a href="https://github.com/itzmetanjim/clickey" target="_blank">GitHub</a>
+                    </div>
+                </article>
+                 <article class="project-card" data-number="01">
+                    <h3>Shelledit</h3>
+                    <p>Full fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive set of 150+ shortcuts to be as fast as Vim while 10x easier to learn. </p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/shelledit/releases/tag/v0.1.0" target="_blank">Download on GitHub</a>
+                        <a href="https://github.com/itzmetanjim/shelledit" target="_blank">GitHub</a>
+                    </div>
+                </article>
+                <article class="project-card" data-number="01">
+                    <h3>The Idea Anvil</h3>
+                    <p>Create custom items using the power of AI!</p>
+                    <div class="links">
+                        <a href="https://modrinth.com/mod/idea_anvil" target="_blank">Download on Modrinth</a>
+                        <a href="https://github.com/itzmetanjim/the-idea-anvil" target="_blank">GitHub</a>
+                    </div>
+                </article>
+                <article class="project-card" data-number="01">
                     <h3>Electromania</h3>
                     <p>Simulate protons, electrons, neutrons and the 4 fundamental forces of nature in an interactive environment. Supports electric plates and magnets as well. Full electromagnetism simulation.</p>
                     <div class="links">
@@ -455,17 +442,15 @@
                         <a href="https://github.com/itzmetanjim/electromania" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
-                <article class="project-card" data-number="07">
-                    <h3>Projectile Mania</h3>
-                    <p>Advanced projectile simulation sandbox with 4 environments and 4 projectiles and 2 blocks. Includes FLIP simulated water. Supports quantum tunnelling.</p>
+                <article class="project-card" data-number="01">
+                    <h3>Projectile mania</h3>
+                    <p>Advanced projectile simulation sandbox with 4 environments and 4 projectiles and 2 blocks. Includes FLIP simulated water. Supports quantum tunelling.</p>
                     <div class="links">
                         <a href="https://tanjim.org/projectilemania" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/projectilemania" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
-                <article class="project-card" data-number="08">
+                <article class="project-card" data-number="01">
                     <h3>Three-Body Simulation</h3>
                     <p>A 2D plot where each point corresponds to a particle and the color corresponds to the attractor it collides with.</p>
                     <div class="links">
@@ -474,34 +459,33 @@
                     </div>
                 </article>
                 
-                <article class="project-card" data-number="09">
+                <article class="project-card" data-number="02">
                     <h3>Double Pendulum</h3>
-                    <p>A 2D plot showing pendulum divergence - reveals non-chaotic and chaotic pendulums through brightness mapping. The result is a beautiful fractal.</p>
+                    <p>A 2D plot showing pendulum divergence-reveals non-chaotic and chaotic pendulums through brightness mapping. The result is a beautiful fractal.</p>
                     <div class="links">
                         <a href="https://tanjim.org/double-pendulum" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">GitHub</a>
                     </div>
                 </article>
                 
-                <article class="project-card" data-number="10">
-                    <h3>Clickey</h3>
-                    <p>Productivity chrome extension. Click on-screen buttons using keyboard keys in 3 keypresses.</p>
+                <article class="project-card" data-number="03">
+                    <h3>DuckyMux</h3>
+                    <p>Run multiple programs simultaneously on an RP2040/RP2350 microcontroller. (except that i didnt port it yet)</p>
                     <div class="links">
-                        <a href="https://github.com/itzmetanjim/clickey/" target="_blank">Download</a>
-                        <a href="https://github.com/itzmetanjim/clickey" target="_blank">GitHub</a>
+                        <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub</a>
                     </div>
                 </article>
                 
-                <article class="project-card" data-number="11">
-                    <h3>The Idea Anvil</h3>
-                    <p>Create custom items using the power of AI!</p>
+                <article class="project-card" data-number="04">
+                    <h3>MKCD <span class="badge">4.41K+ downloads</span></h3>
+                    <p>Linux utilities for Windows-grep, awk, sed, head, and more for PowerShell and CMD without WSL.</p>
                     <div class="links">
-                        <a href="https://modrinth.com/mod/idea_anvil" target="_blank">Modrinth</a>
-                        <a href="https://github.com/itzmetanjim/the-idea-anvil" target="_blank">GitHub</a>
+                        <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub</a>
+                        <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
                     </div>
                 </article>
                 
-                <article class="project-card" data-number="12">
+                <article class="project-card" data-number="05">
                     <h3>LLM Dump</h3>
                     <p>Access every latest AI model with generous ratelimits, completely free.</p>
                     <div class="links">
@@ -509,11 +493,12 @@
                     </div>
                 </article>
                 
-                <article class="project-card" data-number="13">
-                    <h3>DuckyMux</h3>
-                    <p>Run multiple programs simultaneously on an RP2040/RP2350 microcontroller. (except that i didnt port it yet)</p>
+                <article class="project-card" data-number="06">
+                    <h3>PyPositron <span class="badge">12.91k+ downloads</span></h3>
+                    <p>A Python UI framework for developing interfaces with HTML, CSS, JS, and Python. Currently in Alpha.</p>
                     <div class="links">
-                        <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub</a>
+                        <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub</a>
+                        <a href="https://pypi.org/project/py-positron/" target="_blank">PyPI</a>
                     </div>
                 </article>
             </div>

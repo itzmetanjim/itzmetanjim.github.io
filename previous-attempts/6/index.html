@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Kamal</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #0a0a0a;
+            --charcoal: #141414;
+            --slate: #1a1a1a;
+            --silver: #888888;
+            --pearl: #f8f8f8;
+            --gold: #c9a962;
+            --gold-light: #e8d5a3;
+            --gold-dark: #8b7355;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            background: var(--obsidian);
+            color: var(--pearl);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Subtle grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 9999;
+        }
+        
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--obsidian), transparent);
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.4s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        /* Hero */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding-top: 5rem;
+        }
+        
+        .hero-ornament {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            margin-bottom: 3rem;
+        }
+        
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--pearl), var(--gold-light), var(--pearl));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+        
+        .hero-description {
+            max-width: 500px;
+            font-size: 1rem;
+            color: var(--silver);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .scroll-line {
+            position: absolute;
+            bottom: 3rem;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(1); }
+            50% { opacity: 1; transform: scaleY(1.2); }
+        }
+        
+        /* Sections */
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+        
+        .section-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 1.5rem auto 0;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+            background: var(--charcoal);
+            border: 1px solid rgba(201, 169, 98, 0.1);
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+            transition: height 0.5s ease;
+        }
+        
+        .project-card:hover::before {
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            border-color: rgba(201, 169, 98, 0.3);
+            transform: translateX(5px);
+        }
+        
+        .project-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--gold);
+            opacity: 0.4;
+            line-height: 1;
+        }
+        
+        .project-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .project-content .badge {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.25rem 0.6rem;
+        }
+        
+        .project-content p {
+            font-size: 0.95rem;
+            color: var(--silver);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .project-links a {
+            color: var(--pearl);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        .project-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Awards */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .awards-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.3);
+            color: var(--gold-light);
+        }
+        
+        .award-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .award-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6rem;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+        
+        .award-item strong {
+            display: block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .award-item span {
+            font-size: 0.85rem;
+            color: var(--silver);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Contact */
+        .contact-section {
+            text-align: center;
+            padding: 8rem 0;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .contact-section p {
+            color: var(--silver);
+            margin-bottom: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold);
+            color: var(--pearl);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+        
+        .contact-btn:hover {
+            background: var(--gold);
+            color: var(--obsidian);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .webring {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .webring a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: opacity 0.3s;
+        }
+        
+        .webring a:hover {
+            opacity: 0.6;
+        }
+        
+        footer p {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .page {
+                padding: 0 1.5rem;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .project-card {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .project-number {
+                font-size: 2rem;
+            }
+            
+            .awards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">TK</div>
+        <div class="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#awards">Recognition</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+    
+    <div class="page">
+        <header>
+            <div class="hero-ornament"></div>
+            <h1>Tanjim Kamal</h1>
+            <p class="hero-subtitle">Mathematics • Science • Artificial Intelligence</p>
+            <p class="hero-description">A student exploring the elegant intersection of mathematical theory, physical phenomena, and computational intelligence.</p>
+            <div class="scroll-line"></div>
+        </header>
+        
+        <section id="projects">
+            <div class="section-header">
+                <span>Selected Works</span>
+                <h2>Projects</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="projects-grid">
+                <article class="project-card">
+                    <span class="project-number">01</span>
+                    <div class="project-content">
+                        <h3>Three-Body Simulation</h3>
+                        <p>A visualization of the classical three-body problem, where each point represents a particle and colors indicate attractor collision outcomes—revealing the chaotic beauty of gravitational dynamics.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/three-body" target="_blank">View Site</a>
+                            <a href="https://github.com/itzmetanjim/three-body" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">02</span>
+                    <div class="project-content">
+                        <h3>Double Pendulum</h3>
+                        <p>Divergence mapping of double pendulum systems, where brightness reveals the degree of chaos—exposing unexpected islands of stability amidst unpredictability.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/double-pendulum" target="_blank">View Site</a>
+                            <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">03</span>
+                    <div class="project-content">
+                        <h3>DuckyMux</h3>
+                        <p>Concurrent program execution framework for RP2040 and RP2350 microcontrollers, enabling sophisticated multi-tasking capabilities on embedded systems.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/duckymux" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">04</span>
+                    <div class="project-content">
+                        <h3>MKCD <span class="badge">3.38K+</span></h3>
+                        <p>Essential Linux utilities reimagined for Windows—bringing grep, awk, sed, and more to PowerShell and CMD without the overhead of WSL.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/mkcd" target="_blank">Source</a>
+                            <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">05</span>
+                    <div class="project-content">
+                        <h3>LLM Dump</h3>
+                        <p>Democratizing access to artificial intelligence—a platform providing free access to the latest language models with generous rate limits.</p>
+                        <div class="project-links">
+                            <a href="https://llmdump.github.io" target="_blank">Visit</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">06</span>
+                    <div class="project-content">
+                        <h3>PyPositron</h3>
+                        <p>A Python framework for crafting elegant user interfaces using HTML, CSS, and JavaScript—currently in active development.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/py-positron" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section id="awards">
+            <div class="section-header">
+                <span>Honors</span>
+                <h2>Recognition</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="awards-grid">
+                <div class="awards-column">
+                    <h3>Distinguished Achievements</h3>
+                    <div class="award-item">
+                        <strong>Individual Bronze & Fundamentals Top 10</strong>
+                        <span>World Economics Cup 2025, Asia & Oceania</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Champion & Sajol Kajol Memorial Prize</strong>
+                        <span>National Bangladesh Mathematical Olympiad 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>National Winner</strong>
+                        <span>Bangladesh Economics Olympiad 2025</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>National Champion</strong>
+                        <span>Bangladesh Junior Science Olympiad 2023</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>7th Place National</strong>
+                        <span>Bangladesh Physics Olympiad 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Honorable Mention</strong>
+                        <span>National BdMO 2025, Junior Category</span>
+                    </div>
+                </div>
+                
+                <div class="awards-column">
+                    <h3>Additional Recognition</h3>
+                    <div class="award-item">
+                        <strong>Physics & Mathematics Champion</strong>
+                        <span>CGC Science Fusion 2025</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Physics & Mathematics Champion</strong>
+                        <span>KnowledgeHive Alpha 1.0, 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Science & Mathematics Champion</strong>
+                        <span>NFGGHS Brainwave 1.0, 2023</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Regional Champion</strong>
+                        <span>Cumilla BdPhO, Category A</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>First Runner Up</strong>
+                        <span>CZS Science Carnival Quiz, 2022</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact-section" id="contact">
+            <div class="section-header">
+                <span>Get in Touch</span>
+                <h2>Contact</h2>
+                <div class="section-divider"></div>
+            </div>
+            <p>Explore my repositories and feel free to open a discussion.</p>
+            <div class="contact-links">
+                <a href="https://github.com/itzmetanjim" class="contact-btn" target="_blank">GitHub</a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" class="contact-btn" target="_blank">Discussions</a>
+                <a href="/pgp.txt" class="contact-btn">PGP Key</a>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="webring">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+            <p>© 2025 Tanjim Kamal</p>
+        </footer>
+    </div>
+</body>
+</html>

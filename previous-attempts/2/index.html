@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TANJIM KAMAL // SYNTHWAVE</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #0a0a12;
+            --deep: #12121f;
+            --neon-pink: #ff2a6d;
+            --neon-cyan: #05d9e8;
+            --neon-purple: #d300c5;
+            --neon-yellow: #f9f002;
+            --grid-color: rgba(5, 217, 232, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--void);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* CRT Scanlines */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            z-index: 9999;
+        }
+        
+        /* Grid Background */
+        .grid-bg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40vh;
+            background: 
+                linear-gradient(transparent 65%, var(--deep) 100%),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(var(--grid-color) 1px, transparent 1px);
+            background-size: 100% 100%, 50px 50px, 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            transform-origin: bottom;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes gridMove {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 0 0, 0 1000px, 0 1000px; }
+        }
+        
+        /* Sun */
+        .sun {
+            position: fixed;
+            bottom: 25vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(
+                to bottom,
+                var(--neon-yellow) 0%,
+                var(--neon-pink) 50%,
+                var(--neon-purple) 100%
+            );
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+            z-index: 0;
+            animation: sunPulse 4s ease-in-out infinite;
+        }
+        
+        .sun::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 8px,
+                var(--void) 8px,
+                var(--void) 16px
+            );
+        }
+        
+        @keyframes sunPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+        
+        .glitch-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: textFlicker 3s infinite;
+        }
+        
+        h1::before,
+        h1::after {
+            content: 'TANJIM KAMAL';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h1::before {
+            animation: glitch1 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+        
+        h1::after {
+            animation: glitch2 2s infinite;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        }
+        
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+        
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(-2px, 2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(-2px, -2px); }
+        }
+        
+        @keyframes textFlicker {
+            0%, 100% { opacity: 1; }
+            92% { opacity: 1; }
+            93% { opacity: 0.8; }
+            94% { opacity: 1; }
+            95% { opacity: 0.9; }
+            96% { opacity: 1; }
+        }
+        
+        .tagline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.5em;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+        
+        /* Sections */
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(18, 18, 31, 0.8);
+            border: 1px solid var(--neon-pink);
+            position: relative;
+            clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 42, 109, 0.1), transparent);
+            pointer-events: none;
+        }
+        
+        section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        section h2::before {
+            content: '//';
+            color: var(--neon-cyan);
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background: linear-gradient(135deg, rgba(5, 217, 232, 0.05), rgba(255, 42, 109, 0.05));
+            border: 1px solid rgba(5, 217, 232, 0.3);
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(5, 217, 232, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .project-card:hover::before {
+            left: 100%;
+        }
+        
+        .project-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(5, 217, 232, 0.3), inset 0 0 20px rgba(5, 217, 232, 0.05);
+        }
+        
+        .project-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: var(--neon-cyan);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-card .badge {
+            font-size: 0.7rem;
+            background: var(--neon-pink);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .project-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .project-card .links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-card .links a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        
+        .project-card .links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            transition: width 0.3s;
+        }
+        
+        .project-card .links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Awards */
+        .awards-list {
+            list-style: none;
+        }
+        
+        .awards-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(5, 217, 232, 0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .awards-list li::before {
+            content: '►';
+            color: var(--neon-pink);
+            font-size: 0.8rem;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .awards-list li strong {
+            color: var(--neon-yellow);
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        .awards-list.major li::before {
+            content: '★';
+        }
+        
+        /* Contact */
+        .contact-section {
+            text-align: center;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .contact-links a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--neon-cyan);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+        
+        .contact-links a:hover {
+            color: var(--void);
+        }
+        
+        .contact-links a:hover::before {
+            left: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .webring {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .webring a {
+            color: var(--neon-pink);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: text-shadow 0.3s;
+        }
+        
+        .webring a:hover {
+            text-shadow: 0 0 20px var(--neon-pink);
+        }
+        
+        footer a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sun {
+                width: 200px;
+                height: 200px;
+                bottom: 20vh;
+            }
+            
+            .tagline {
+                letter-spacing: 0.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="sun"></div>
+    <div class="grid-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="glitch-wrapper">
+                <h1>TANJIM KAMAL</h1>
+            </div>
+            <p class="tagline">Math • Science • AI</p>
+        </header>
+        
+        <section>
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Three-Body Simulation</h3>
+                    <p>A 2D plot where each point corresponds to a particle and the color corresponds to the attractor it collides with.</p>
+                    <div class="links">
+                        <a href="https://tanjim.org/three-body" target="_blank">View Site →</a>
+                        <a href="https://github.com/itzmetanjim/three-body" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Double Pendulum</h3>
+                    <p>A 2D plot showing pendulum divergence through brightness mapping—reveals chaotic dynamics.</p>
+                    <div class="links">
+                        <a href="https://tanjim.org/double-pendulum" target="_blank">View Site →</a>
+                        <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>DuckyMux</h3>
+                    <p>Run multiple programs simultaneously on an RP2040/RP2350 microcontroller.</p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>MKCD <span class="badge">3.38k+</span></h3>
+                    <p>Linux utilities for Windows—grep, awk, sed, head, and more without WSL.</p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub →</a>
+                        <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>LLM Dump</h3>
+                    <p>Access every latest AI model with generous ratelimits, completely free.</p>
+                    <div class="links">
+                        <a href="https://llmdump.github.io" target="_blank">Visit →</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <h3>PyPositron</h3>
+                    <p>Python UI framework for HTML/CSS/JS interfaces. Currently in Alpha.</p>
+                    <div class="links">
+                        <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Major Awards</h2>
+            <ul class="awards-list major">
+                <li><span><strong>Individual Bronze + Fundamentals Top 10</strong>World Economics Cup 2025 Continental (Asia & Oceania)</span></li>
+                <li><span><strong>Champion + Sajol Kajol Memorial Prize</strong>National BdMO 2024 (Primary) + Camp Participant</span></li>
+                <li><span><strong>Winner</strong>Bangladesh Economics Olympiad 2025 + Camp</span></li>
+                <li><span><strong>Champion</strong>BdJSO National 2023 (Primary)</span></li>
+                <li><span><strong>7th Place</strong>Bangladesh Physics Olympiad 2024 National + Camp</span></li>
+                <li><span><strong>Honorable Mention</strong>National BdMO 2025 (Junior) + Camp</span></li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Other Recognition</h2>
+            <ul class="awards-list">
+                <li><span>CGC Science Fusion 2025 — Physics & Math Olympiad Champion</span></li>
+                <li><span>KnowledgeHive Alpha 1.0 2024 — Physics & Math Champion</span></li>
+                <li><span>NFGGHS Brainwave 2023 — Science & Math Champion</span></li>
+                <li><span>Cumilla Regional BdPhO Champion (Category A)</span></li>
+                <li><span>CZS Science Carnival 2022 — Quiz 1st Runner Up</span></li>
+            </ul>
+        </section>
+        
+        <section class="contact-section">
+            <h2>Contact</h2>
+            <p>Explore repositories, open issues, or start a discussion.</p>
+            <div class="contact-links">
+                <a href="https://github.com/itzmetanjim" target="_blank">GitHub</a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">Discussions</a>
+                <a href="/pgp.txt">PGP Key</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 TANJIM KAMAL</p>
+            <div class="webring">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

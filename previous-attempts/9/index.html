@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanjim Kamal — Art Deco Portfolio</title>
+    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0a0a14;
+            --navy: #141428;
+            --gold: #d4af37;
+            --gold-light: #f4d160;
+            --gold-dark: #a68a29;
+            --cream: #faf8f0;
+            --silver: #c0c0c0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 17px;
+        }
+        
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background: var(--midnight);
+            color: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Geometric Pattern Background */
+        .deco-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    var(--gold) 0,
+                    var(--gold) 1px,
+                    transparent 1px,
+                    transparent 40px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    var(--gold) 0,
+                    var(--gold) 1px,
+                    transparent 1px,
+                    transparent 40px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Decorative Borders */
+        .deco-border {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        
+        .deco-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .deco-diamond {
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+        
+        /* Hero Section */
+        header {
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .sunburst {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            opacity: 0.05;
+            background: repeating-conic-gradient(
+                from 0deg,
+                var(--gold) 0deg 5deg,
+                transparent 5deg 10deg
+            );
+            z-index: -1;
+        }
+        
+        .hero-frame {
+            display: inline-block;
+            padding: 3rem 4rem;
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        
+        .hero-frame::before,
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--gold);
+        }
+        
+        .hero-frame::before {
+            top: -8px;
+            left: -8px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .hero-frame::after {
+            bottom: -8px;
+            right: -8px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        h1 {
+            font-family: 'Poiret One', cursive;
+            font-size: clamp(3rem, 10vw, 6rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+        
+        /* Section Styling */
+        section {
+            margin: 4rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Poiret One', cursive;
+            font-size: 2.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::before,
+        .section-header h2::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        
+        .section-header h2::before {
+            left: -2rem;
+        }
+        
+        .section-header h2::after {
+            right: -2rem;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background: var(--navy);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            transition: all 0.4s ease;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
+            transition: height 0.4s ease;
+        }
+        
+        .project-card:hover::before {
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+        
+        .project-number {
+            font-family: 'Poiret One', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+        
+        .project-content h3 {
+            font-family: 'Poiret One', cursive;
+            font-size: 1.75rem;
+            letter-spacing: 0.1em;
+            color: var(--gold-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-content .badge {
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            background: var(--gold);
+            color: var(--midnight);
+            padding: 0.3rem 0.6rem;
+            font-weight: 600;
+        }
+        
+        .project-content p {
+            color: var(--silver);
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .project-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        .project-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-links a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* Awards Section */
+        .awards-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .awards-column h3 {
+            font-family: 'Poiret One', cursive;
+            font-size: 1.25rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .award-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .award-item::before {
+            content: '◇';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+        
+        .award-item strong {
+            display: block;
+            font-weight: 500;
+            color: var(--cream);
+            margin-bottom: 0.25rem;
+        }
+        
+        .award-item span {
+            font-size: 0.85rem;
+            color: var(--silver);
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05), transparent);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+        
+        .contact-section::before,
+        .contact-section::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--gold);
+        }
+        
+        .contact-section::before {
+            top: 1rem;
+            left: 1rem;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .contact-section::after {
+            bottom: 1rem;
+            right: 1rem;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .contact-section p {
+            color: var(--silver);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .deco-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .deco-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        
+        .deco-btn:hover {
+            color: var(--midnight);
+        }
+        
+        .deco-btn:hover::before {
+            left: 0;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .webring-deco {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .webring-deco a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .webring-deco a:hover {
+            background: var(--gold);
+            color: var(--midnight);
+        }
+        
+        footer p {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--silver);
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Deco Fan decoration */
+        .deco-fan {
+            width: 100px;
+            height: 50px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .deco-fan::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: repeating-conic-gradient(
+                from 180deg,
+                var(--gold) 0deg 10deg,
+                transparent 10deg 20deg
+            );
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-frame {
+                padding: 2rem;
+            }
+            
+            .project-card {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .project-number {
+                font-size: 2.5rem;
+            }
+            
+            .awards-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="deco-bg"></div>
+    
+    <div class="page">
+        <header>
+            <div class="sunburst"></div>
+            <div class="hero-frame">
+                <h1>Tanjim Kamal</h1>
+                <p class="subtitle">Mathematics • Science • Artificial Intelligence</p>
+            </div>
+        </header>
+        
+        <div class="deco-border">
+            <div class="deco-line"></div>
+            <div class="deco-diamond"></div>
+            <div class="deco-line"></div>
+        </div>
+        
+        <section>
+            <div class="section-header">
+                <h2>Projects</h2>
+            </div>
+            
+            <div class="projects-grid">
+                <article class="project-card">
+                    <span class="project-number">I</span>
+                    <div class="project-content">
+                        <h3>Three-Body Simulation</h3>
+                        <p>A visualization of gravitational chaos where particles find their cosmic fate, each point colored by its destined attractor.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/three-body" target="_blank">View</a>
+                            <a href="https://github.com/itzmetanjim/three-body" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">II</span>
+                    <div class="project-content">
+                        <h3>Double Pendulum</h3>
+                        <p>Divergence mapping of pendulum systems, revealing islands of stability amidst seas of chaos through luminance.</p>
+                        <div class="project-links">
+                            <a href="https://tanjim.org/double-pendulum" target="_blank">View</a>
+                            <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">III</span>
+                    <div class="project-content">
+                        <h3>DuckyMux</h3>
+                        <p>Concurrent program execution framework for RP2040 and RP2350 microcontrollers.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/duckymux" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">IV</span>
+                    <div class="project-content">
+                        <h3>MKCD <span class="badge">3.38K+</span></h3>
+                        <p>Essential Linux utilities reimagined for Windows—grep, awk, sed brought to PowerShell and CMD.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/mkcd" target="_blank">Source</a>
+                            <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">V</span>
+                    <div class="project-content">
+                        <h3>LLM Dump</h3>
+                        <p>Democratizing artificial intelligence—free access to the latest language models with generous limits.</p>
+                        <div class="project-links">
+                            <a href="https://llmdump.github.io" target="_blank">Visit</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="project-card">
+                    <span class="project-number">VI</span>
+                    <div class="project-content">
+                        <h3>PyPositron</h3>
+                        <p>A Python framework for crafting elegant interfaces using HTML, CSS, and JavaScript.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/itzmetanjim/py-positron" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <div class="deco-fan"></div>
+        
+        <section>
+            <div class="section-header">
+                <h2>Recognition</h2>
+            </div>
+            
+            <div class="awards-container">
+                <div class="awards-column">
+                    <h3>Distinguished Honours</h3>
+                    <div class="award-item">
+                        <strong>Individual Bronze & Top 10 Fundamentals</strong>
+                        <span>World Economics Cup 2025, Asia & Oceania</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Champion & Sajol Kajol Memorial Prize</strong>
+                        <span>National Bangladesh Mathematical Olympiad 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>National Winner</strong>
+                        <span>Bangladesh Economics Olympiad 2025</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>National Champion</strong>
+                        <span>Bangladesh Junior Science Olympiad 2023</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>7th Place National</strong>
+                        <span>Bangladesh Physics Olympiad 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Honorable Mention</strong>
+                        <span>National BdMO 2025, Junior</span>
+                    </div>
+                </div>
+                
+                <div class="awards-column">
+                    <h3>Additional Accolades</h3>
+                    <div class="award-item">
+                        <strong>Physics & Mathematics Champion</strong>
+                        <span>CGC Science Fusion 2025</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Physics & Mathematics Champion</strong>
+                        <span>KnowledgeHive Alpha 1.0, 2024</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Science & Mathematics Champion</strong>
+                        <span>NFGGHS Brainwave 1.0, 2023</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>Regional Champion</strong>
+                        <span>Cumilla BdPhO, Category A</span>
+                    </div>
+                    <div class="award-item">
+                        <strong>First Runner Up</strong>
+                        <span>CZS Science Carnival Quiz, 2022</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="deco-border">
+            <div class="deco-line"></div>
+            <div class="deco-diamond"></div>
+            <div class="deco-line"></div>
+        </div>
+        
+        <section class="contact-section">
+            <div class="section-header">
+                <h2>Contact</h2>
+            </div>
+            <p>Explore my repositories and feel free to open a discussion.</p>
+            <div class="contact-buttons">
+                <a href="https://github.com/itzmetanjim" class="deco-btn" target="_blank">GitHub</a>
+                <a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" class="deco-btn" target="_blank">Discussions</a>
+                <a href="/pgp.txt" class="deco-btn">PGP Key</a>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="webring-deco">
+                <a href="https://www.hasnat4763.me" title="Previous">‹</a>
+                <a href="https://www.twonum.org/" title="Next">›</a>
+            </div>
+            <p>© 2025 Tanjim Kamal</p>
+        </footer>
+    </div>
+</body>
+</html>

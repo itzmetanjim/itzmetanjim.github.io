@@ -1,383 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TANJIM KAMAL</title>
-    <meta name="description" content="Tanjim Kamal - Student interested in Math, Science, and AI">
+    <meta name="description" content="Tanjim's website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #f5f5dc;
-            --ink: #1a1a1a;
-            --accent: #ff3300;
-            --border: 3px solid var(--ink);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        ::selection {
-            background: var(--accent);
-            color: var(--bg);
-        }
-        
-        html {
-            font-size: 16px;
-        }
-        
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg);
-            color: var(--ink);
-            min-height: 100vh;
-            line-height: 1.4;
-        }
-        
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-            z-index: 9999;
-        }
-        
-        .masthead {
-            border-bottom: var(--border);
-            padding: 1rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .masthead::before {
-            content: 'PERSONAL WEBSITE - ESTABLISHED 2026 - REVISION 001';
-            display: block;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 0.5rem;
-            border-bottom: 1px solid var(--ink);
-            padding-bottom: 0.5rem;
-        }
-        
-        .masthead h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(4rem, 15vw, 12rem);
-            letter-spacing: 0.02em;
-            line-height: 0.85;
-            margin: 0.5rem 0;
-        }
-        
-        .masthead .tagline {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            border-top: 1px solid var(--ink);
-            padding-top: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 2px 2fr;
-            min-height: calc(100vh - 200px);
-        }
-        
-        .divider {
-            background: var(--ink);
-        }
-        
-        .sidebar {
-            padding: 1.5rem;
-            border-right: none;
-        }
-        
-        .sidebar-section {
-            margin-bottom: 2rem;
-        }
-        
-        .sidebar-section h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            border-bottom: 2px solid var(--ink);
-            margin-bottom: 1rem;
-            padding-bottom: 0.25rem;
-        }
-        
-        .contact-block {
-            font-size: 0.75rem;
-            line-height: 1.8;
-        }
-        
-        .contact-block a {
-            color: var(--ink);
-            text-decoration: none;
-            border-bottom: 1px solid var(--ink);
-            transition: all 0.1s;
-        }
-        
-        .contact-block a:hover {
-            background: var(--ink);
-            color: var(--bg);
-        }
-        
-        .award-ticker {
-            font-size: 0.7rem;
-            line-height: 1.6;
-        }
-        
-        .award-ticker li {
-            list-style: none;
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--ink);
-        }
-        
-        .award-ticker li strong {
-            display: block;
-            color: var(--accent);
-            margin-bottom: 0.2rem;
-        }
-        
-        .content {
-            padding: 1.5rem;
-        }
-        
-        .headline-section {
-            border-bottom: var(--border);
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .headline-section h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-        
-        .headline-section .deck {
-            font-size: 1rem;
-            font-style: italic;
-            max-width: 60ch;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .project-card {
-            border: var(--border);
-            padding: 1rem;
-            position: relative;
-            background: var(--bg);
-            transition: transform 0.1s;
-        }
-        
-        .project-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 4px 4px 0 var(--ink);
-        }
-        
-        .project-card::before {
-            content: attr(data-number);
-            position: absolute;
-            top: -0.75rem;
-            right: 1rem;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            background: var(--bg);
-            padding: 0 0.25rem;
-            color: var(--accent);
-        }
-        
-        .project-card h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            border-bottom: 1px solid var(--ink);
-            padding-bottom: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-card .badge {
-            display: inline-block;
-            background: var(--ink);
-            color: var(--bg);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-left: 0.5rem;
-            vertical-align: middle;
-        }
-        
-        .project-card p {
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        
-        .project-card .links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .project-card .links a {
-            font-size: 0.7rem;
-            color: var(--ink);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: 1px solid var(--ink);
-            padding: 0.3rem 0.5rem;
-            transition: all 0.1s;
-        }
-        
-        .project-card .links a:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-        }
-        
-        .footer-bar {
-            border-top: var(--border);
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.7rem;
-        }
-        
-        .footer-bar a {
-            color: var(--ink);
-            text-decoration: none;
-        }
-        
-        .webring {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .webring a {
-            font-size: 1.5rem;
-            border: 1px solid var(--ink);
-            width: 2rem;
-            height: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.1s;
-        }
-        
-        .webring a:hover {
-            background: var(--ink);
-            color: var(--bg);
-        }
-        
-        .marquee {
-            overflow: hidden;
-            border-top: 1px solid var(--ink);
-            border-bottom: 1px solid var(--ink);
-            padding: 0.5rem 0;
-            background: var(--ink);
-            color: var(--bg);
-        }
-        
-        .marquee-content {
-            display: flex;
-            animation: marquee 20s linear infinite;
-            white-space: nowrap;
-        }
-        
-        .marquee-content span {
-            padding: 0 2rem;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-        }
-        
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        @media (max-width: 768px) {
-            .main-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .divider {
-                height: 2px;
-                width: 100%;
-            }
-            
-            .sidebar {
-                border-right: none;
-                border-bottom: var(--border);
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <div class="noise"></div>
-    
+
     <header class="masthead">
         <h1>TANJIM KAMAL</h1>
-        <p class="tagline">Math • Science • Physics • Economics • AI/ML</p>
+        <p class="tagline">Math &bullet; Science &bullet; Physics &bullet; Economics &bullet; AI/ML</p>
     </header>
-    
+
     <div class="marquee">
         <div class="marquee-content">
-            <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;World Economics Cup 2025 Bronze Medalist</span>
+            <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;World Economics Cup 2025 Bronze
+                Medalist</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdMO 2024 Champion</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdPhO 2024 7th Place</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdJSO 2023 Champion</span>
-            <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;World Economics Cup 2025 Bronze Medalist</span>
+            <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;World Economics Cup 2025 Bronze
+                Medalist</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdMO 2024 Champion</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdPhO 2024 7th Place</span>
             <span>★&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BdJSO 2023 Champion</span>
         </div>
     </div>
-    
+
     <main class="main-grid">
         <aside class="sidebar">
             <div class="sidebar-section">
                 <h2>CONTACT</h2>
                 <div class="contact-block">
-                    <p><a href="https://github.com/itzmetanjim" target="_blank">→ GitHub</a></p>
-                    <p><a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">→ Discussions</a></p>
-                    <p><a href="/pgp.txt">→ PGP Key</a></p>
+                    <p><a href="https://github.com/itzmetanjim" target="_blank">&rarr; GitHub</a></p>
+                    <p><a href="https://github.com/itzmetanjim/itzmetanjim/discussions/1" target="_blank">&rarr;
+                            Discussions</a></p>
+                    <p><a href="/pgp.txt">&rarr; PGP Key</a></p>
                 </div>
             </div>
-            
+
             <div class="sidebar-section">
                 <h2>MAJOR AWARDS</h2>
                 <ul class="award-ticker">
                     <li><strong>CHAMPION</strong>Bangladesh Economics Olympiad 2026 National</li>
-                    <li><strong>INDIVIDUAL BRONZE + FUNDAMENTALS TOP 10</strong>World Economics Cup 2025 Continental (Asia & Oceania)</li>
-                    <li><strong>CHAMPION + SAJOL KAJOL MEMORIAL PRIZE</strong>National Bangladesh Mathematical Olympiad 2024 (Primary Category) + Primary Camp Participant</li>
+                    <li><strong>INDIVIDUAL BRONZE + FUNDAMENTALS TOP 10</strong>World Economics Cup 2025 Continental
+                        (Asia & Oceania)</li>
+                    <li><strong>CHAMPION + SAJOL KAJOL MEMORIAL PRIZE</strong>National Bangladesh Mathematical Olympiad
+                        2024 (Primary Category) + Primary Camp Participant</li>
                     <li><strong>WINNER</strong> National Bangladesh Economics Olympiad 2025 + camp participant</li>
-                    <li><strong>WINNER</strong> National Bangladesh Economics Olympiad 2025 Camp Test + selected for World Economics Cup 2025</li>
+                    <li><strong>WINNER</strong> National Bangladesh Economics Olympiad 2025 Camp Test + selected for
+                        World Economics Cup 2025</li>
                     <li><strong>CHAMPION</strong>BdJSO National 2023 (Primary Category)</li>
-                    <li><strong>7TH PLACE</strong>Bangladesh Physics Olympiad 2024 National (Category A) + camp participant</li>
-                    <li><strong>HONORABLE MENTION</strong>National Bangladesh Mathematical Olympiad 2025 (Junior Category) + Junior Camp Participant</li>
+                    <li><strong>7TH PLACE</strong>Bangladesh Physics Olympiad 2024 National (Category A) + camp
+                        participant</li>
+                    <li><strong>HONORABLE MENTION</strong>National Bangladesh Mathematical Olympiad 2025 (Junior
+                        Category) + Junior Camp Participant</li>
                 </ul>
             </div>
-            
+
             <div class="sidebar-section">
                 <h2>OTHER RECOGNITION</h2>
                 <ul class="award-ticker">
@@ -385,104 +73,119 @@
                     <li><strong>CHAMPION</strong>Comilla Government College Science Fusion 2025 Math Olympiad</li>
                     <li><strong>CHAMPION</strong>KnowledgeHive Alpha 1.0 2024 Physics Olympiad</li>
                     <li><strong>CHAMPION</strong>KnowledgeHive Alpha 1.0 2024 Math Olympiad</li>
-                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0 Science Olympiad</li>
-                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0 Math Olympiad</li>
+                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0
+                        Science Olympiad</li>
+                    <li><strong>CHAMPION</strong>Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0 Math
+                        Olympiad</li>
                     <li><strong>CHAMPION</strong>Cumilla Regional Bangladesh Physics Olympiad (Category A)</li>
                     <li><strong>1ST RUNNER UP</strong>Comilla Zilla School Science Carnival 3.0 2022 Science Quiz</li>
                 </ul>
             </div>
         </aside>
-        
+
         <div class="divider"></div>
-        
+
         <section class="content">
             <div class="headline-section">
                 <h2>PROJECTS & WORKS</h2>
-                <p class="deck">A collection of simulations, tools, and frameworks exploring chaos theory, hardware hacking, and more.</p>
+                <p class="deck">cool projects!! check em out</p>
             </div>
-            
+
             <div class="projects-grid">
                 <article class="project-card" data-number="01">
                     <h3>Shelledit</h3>
-                    <p>Full-fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive set of 150+ shortcuts to be as fast as Vim while 10x easier to learn.</p>
+                    <p>Full-fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file
+                        explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive
+                        set of 150+ shortcuts to be as fast as Vim while 10x easier to learn.</p>
                     <div class="links">
-                        <a href="https://github.com/itzmetanjim/shelledit/releases/tag/v0.1.0" target="_blank">Download</a>
+                        <a href="https://github.com/itzmetanjim/shelledit/releases/tag/v0.1.0"
+                            target="_blank">Download</a>
                         <a href="https://github.com/itzmetanjim/shelledit" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="02">
                     <h3>curSH <span class="badge">3.67K+ downloads</span></h3>
-                    <p>Replace dangerous <code>curl|sh</code> "easy install" scripts with a safe alternative. One can <code>rm -rf</code> your root directory; the other provides advanced cryptographical verification.</p>
+                    <p>Replace dangerous <code>curl|sh</code> "easy install" scripts with a safe alternative. One can
+                        <code>rm -rf</code> your root directory; the other provides advanced cryptographical
+                        verification.</p>
                     <div class="links">
                         <a href="https://pypi.org/project/cursh/" target="_blank">PyPI</a>
                         <a href="https://github.com/itzmetanjim/cursh" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="03">
                     <h3>PyPositron <span class="badge">12.91k+ downloads</span></h3>
-                    <p>A Python UI framework for developing interfaces with HTML, CSS, JS, and Python. Currently in Alpha.</p>
+                    <p>A Python UI framework for developing interfaces with HTML, CSS, JS, and Python. Currently in
+                        Alpha.</p>
                     <div class="links">
                         <a href="https://github.com/itzmetanjim/py-positron" target="_blank">GitHub</a>
                         <a href="https://pypi.org/project/py-positron/" target="_blank">PyPI</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="04">
                     <h3>TINAC: Tinac Is Not A CAPTCHA</h3>
-                    <p>A new kind of CAPTCHA. You drag a slider until the noisy image suddenly snaps to readable text then input it. Supports JWT. Decoys are generated using Markov Chains to make ML harder.</p>
+                    <p>A new kind of CAPTCHA. You drag a slider until the noisy image suddenly snaps to readable text
+                        then input it. Supports JWT. Decoys are generated using Markov Chains to make ML harder.</p>
                     <div class="links">
                         <a href="https://tanjim.org/tinac/" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/tinac" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="05">
                     <h3>MKCD <span class="badge">4.41K+ downloads</span></h3>
-                    <p>Linux utilities for Windows - bringing familiar Linux commands like <code>grep</code>, <code>awk</code>, <code>sed</code>, <code>head</code>, and more to Windows PowerShell and CMD without requiring WSL or separate terminals.</p>
+                    <p>Linux utilities for Windows - bringing familiar Linux commands like <code>grep</code>,
+                        <code>awk</code>, <code>sed</code>, <code>head</code>, and more to Windows PowerShell and CMD
+                        without requiring WSL or separate terminals.</p>
                     <div class="links">
                         <a href="https://github.com/itzmetanjim/mkcd" target="_blank">GitHub</a>
                         <a href="https://pypi.org/project/mkcd/" target="_blank">PyPI</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="06">
                     <h3>Electromania</h3>
-                    <p>Simulate protons, electrons, neutrons and the 4 fundamental forces of nature in an interactive environment. Supports electric plates and magnets as well. Full electromagnetism simulation.</p>
+                    <p>Simulate protons, electrons, neutrons and the 4 fundamental forces of nature in an interactive
+                        environment. Supports electric plates and magnets as well. Full electromagnetism simulation.</p>
                     <div class="links">
                         <a href="https://tanjim.org/electromania" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/electromania" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="07">
                     <h3>Projectile Mania</h3>
-                    <p>Advanced projectile simulation sandbox with 4 environments and 4 projectiles and 2 blocks. Includes FLIP simulated water. Supports quantum tunnelling.</p>
+                    <p>Advanced projectile simulation sandbox with 4 environments and 4 projectiles and 2 blocks.
+                        Includes FLIP simulated water. Supports quantum tunnelling.</p>
                     <div class="links">
                         <a href="https://tanjim.org/projectilemania" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/projectilemania" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="08">
                     <h3>Three-Body Simulation</h3>
-                    <p>A 2D plot where each point corresponds to a particle and the color corresponds to the attractor it collides with.</p>
+                    <p>A 2D plot where each point corresponds to a particle and the color corresponds to the attractor
+                        it collides with.</p>
                     <div class="links">
                         <a href="https://tanjim.org/three-body" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/three-body" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="09">
                     <h3>Double Pendulum</h3>
-                    <p>A 2D plot showing pendulum divergence - reveals non-chaotic and chaotic pendulums through brightness mapping. The result is a beautiful fractal.</p>
+                    <p>A 2D plot showing pendulum divergence - reveals non-chaotic and chaotic pendulums through
+                        brightness mapping. The result is a beautiful fractal.</p>
                     <div class="links">
                         <a href="https://tanjim.org/double-pendulum" target="_blank">View Site</a>
                         <a href="https://github.com/itzmetanjim/double-pendulum" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="10">
                     <h3>Clickey</h3>
                     <p>Productivity chrome extension. Click on-screen buttons using keyboard keys in 3 keypresses.</p>
@@ -491,7 +194,7 @@
                         <a href="https://github.com/itzmetanjim/clickey" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="11">
                     <h3>The Idea Anvil</h3>
                     <p>Create custom items using the power of AI!</p>
@@ -500,18 +203,20 @@
                         <a href="https://github.com/itzmetanjim/the-idea-anvil" target="_blank">GitHub</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="12">
                     <h3>LLM Dump</h3>
-                    <p>Access every latest AI model with generous ratelimits, completely free.</p>
+                    <p>Access every**** latest AI model with generous ratelimits, completely free.</p>
+                    <p>(only github models models, so not anthropic)</p>
                     <div class="links">
                         <a href="https://llmdump.github.io" target="_blank">Visit</a>
                     </div>
                 </article>
-                
+
                 <article class="project-card" data-number="13">
                     <h3>DuckyMux</h3>
-                    <p>Run multiple programs simultaneously on an RP2040/RP2350 microcontroller. (except that i didnt port it yet)</p>
+                    <p>Run multiple programs simultaneously on an RP2040/RP2350 microcontroller. (except that i didnt
+                        port it yet)</p>
                     <div class="links">
                         <a href="https://github.com/itzmetanjim/duckymux" target="_blank">GitHub</a>
                     </div>
@@ -519,13 +224,14 @@
             </div>
         </section>
     </main>
-    
+
     <footer class="footer-bar">
         <span>© 2025 TANJIM KAMAL</span>
         <div class="webring">
-            <a href="https://www.hasnat4763.me" title="Previous">‹</a>
-            <a href="https://www.twonum.org/" title="Next">›</a>
+            <a href="https://www.hasnat4763.me" title="Previous">&lsaquo;</a>
+            <a href="https://www.twonum.org/" title="Next">&rsaquo;</a>
         </div>
     </footer>
 </body>
+
 </html>

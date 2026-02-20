@@ -1,0 +1,314 @@
+:root {
+    --bg: #f5f5dc;
+    --ink: #1a1a1a;
+    --accent: #ff3300;
+    --border: 3px solid var(--ink);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.4;
+}
+
+.masthead {
+    border-bottom: var(--border);
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.masthead::before {
+    content: 'PERSONAL WEBSITE - ESTABLISHED 2026';
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.5rem;
+}
+
+.masthead h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 15vw, 12rem);
+    letter-spacing: 0.02em;
+    line-height: 0.85;
+    margin: 0.5rem 0;
+}
+
+.masthead .tagline {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border-top: 1px solid var(--ink);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 2px 2fr;
+    min-height: calc(100vh - 200px);
+}
+
+.divider {
+    background: var(--ink);
+}
+
+.sidebar {
+    padding: 1.5rem;
+    border-right: none;
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 1rem;
+    padding-bottom: 0.25rem;
+}
+
+.contact-block {
+    font-size: 0.75rem;
+    line-height: 1.8;
+}
+
+.contact-block a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    transition: all 0.1s;
+}
+
+.contact-block a:hover {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.award-ticker {
+    font-size: 0.7rem;
+    line-height: 1.6;
+}
+
+.award-ticker li {
+    list-style: none;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--ink);
+}
+
+.award-ticker li strong {
+    display: block;
+    color: var(--accent);
+    margin-bottom: 0.2rem;
+}
+
+.content {
+    padding: 1.5rem;
+}
+
+.headline-section {
+    border-bottom: var(--border);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.headline-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.headline-section .deck {
+    font-size: 1rem;
+    font-style: italic;
+    max-width: 60ch;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.project-card {
+    border: var(--border);
+    padding: 1rem;
+    position: relative;
+    background: var(--bg);
+    transition: transform 0.1s;
+}
+
+.project-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 4px 4px 0 var(--ink);
+}
+
+.project-card::before {
+    content: attr(data-number);
+    position: absolute;
+    top: -0.75rem;
+    right: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    background: var(--bg);
+    padding: 0 0.25rem;
+    color: var(--accent);
+}
+
+.project-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-card .badge {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.project-card p {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.project-card .links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.project-card .links a {
+    font-size: 0.7rem;
+    color: var(--ink);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--ink);
+    padding: 0.3rem 0.5rem;
+    transition: all 0.1s;
+}
+
+.project-card .links a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.footer-bar {
+    border-top: var(--border);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.7rem;
+}
+
+.footer-bar a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.webring {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.webring a {
+    font-size: 1.5rem;
+    border: 1px solid var(--ink);
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s;
+}
+
+.webring a:hover {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 0.5rem 0;
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.marquee-content {
+    display: flex;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+}
+
+.marquee-content span {
+    padding: 0 2rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .divider {
+        height: 2px;
+        width: 100%;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: var(--border);
+    }
+}

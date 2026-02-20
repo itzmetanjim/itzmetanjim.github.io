@@ -41,7 +41,7 @@ body {
     background-image:url("tanjimpixel.png");
     background-repeat:repeat;
     background-position:0 0;
-    background-size:100px 100px;
+    background-size:150px auto;
     opacity:0.25;
     image-rendering:-moz-crisp-edges;
     image-rendering:-o-crisp-edges;

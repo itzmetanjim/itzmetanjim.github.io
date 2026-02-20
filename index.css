@@ -268,18 +268,18 @@ body {
     font-size:0.7rem;
 }
 
-.footer-bar a {
+.footer-bar a.btnthing {
     color:var(--ink);
     text-decoration:none;
 }
 
-.webring {
+.rightfooter {
     display:flex;
     align-items:center;
     gap:1rem;
 }
 
-.webring a {
+.rightfooter a.btnthing {
     font-size:1.5rem;
     border:1px solid var(--ink);
     width:2rem;
@@ -290,7 +290,7 @@ body {
     transition:all 0.1s;
 }
 
-.webring a:hover {
+.rightfooter a:hover.btnthing {
     background:var(--ink);
     color:var(--bg);
 }

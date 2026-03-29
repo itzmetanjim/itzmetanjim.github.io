@@ -1,4 +1,15 @@
-:root {
+:root:has(body.dark) {
+    /*
+    --bg:#f5f5dc;
+    --ink:#1a1a1a;
+    --accent:#ff3300;
+    --border:3px solid var(--ink);*/
+    --bg:#0A0A23;
+    --ink:#e5e5e5;
+    --accent:#ff3300;
+    --border:3px solid var(--ink);
+}
+:root:not(:has(body.dark)) {
     --bg:#f5f5dc;
     --ink:#1a1a1a;
     --accent:#ff3300;
@@ -9,6 +20,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    transition: all 0.5s ease-in-out;
 }
 
 ::selection {
@@ -66,7 +78,7 @@ body {
 }
 
 .masthead::before {
-    content:'idk what to put here';
+    content:'press P to switch themes';
     display:block;
     font-size:0.65rem;
     letter-spacing:0.3em;

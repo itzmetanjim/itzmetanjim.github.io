@@ -2,13 +2,19 @@
     --paper: #f5f3ef;
     --bg: #1e1e1e;
     --sep: #ccc;
-    /*sepl=sep transparent*/
+    --invsep: #333;
     --sepl: #cccccc88;
     --luh: #555;
     --rrc: #ddd;
     --lh: #1e1e1e;
     --faded: #555;
+    --lr: 5%;
     box-sizing: border-box;
+}
+@media screen and (max-width:1500px){
+    :root{
+        --lr: 0.5%;
+    }
 }
 body{
     background-color: var(--bg);
@@ -27,8 +33,8 @@ body{
 }
 .bgdiv {
     top: 5%;
-    left: 5%;
-    right: 5%;
+    left: var(--lr);
+    right: var(--lr);
     bottom: 5%;
     background-color: var(--paper);
     background-image: radial-gradient(140% 45% at 50% -10%, #fffcf48c, #fffcf400 60%), radial-gradient(160% 55% at 50% 110%, #3c281414, #3c281400 60%), url("data:image/svg+xml,%3Csvg viewBox='0 0.312 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='6' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='1.8' intercept='0.05'/%3E%3CfeFuncG type='linear' slope='1.8' intercept='0.05'/%3E%3CfeFuncB type='linear' slope='1.8' intercept='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.35'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 384 384' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='cloud'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.98  0 0 0 0 0.94  0 0 0 0 0.82  0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23cloud)' opacity='0.18'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='1.6' intercept='0.1'/%3E%3CfeFuncG type='linear' slope='1.6' intercept='0.1'/%3E%3CfeFuncB type='linear' slope='1.6' intercept='0.1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fine)' opacity='0.35'/%3E%3C/svg%3E");
@@ -143,10 +149,25 @@ hr{
     margin: 0;
     margin-bottom: 5px;
 }
-.award{
+.award, .project{
     padding-bottom: 30px;
 }
 
 .pad{
     padding-bottom: 10px;
+}
+.hh1{
+    font-size: 48px;
+}
+.links a{
+    margin-right: 10px;
+    text-decoration:none;
+    padding: 5px 10px;
+    border: 1px solid var(--sep);
+    transition: background-color 0.3s cubic-bezier(0.33, 1, 0.68, 1), color 0.3s cubic-bezier(0.33, 1, 0.68, 1), filter 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.links a:hover{
+    color: #fff;
+    background-color: var(--invsep);
+
 }

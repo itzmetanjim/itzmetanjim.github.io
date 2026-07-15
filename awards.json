@@ -1,0 +1,99 @@
+{
+  "award_groups": [
+    {
+      "title": "Major Awards",
+      "items": [
+        {
+          "result": "Champion",
+          "event": "National High School Programming Contest 2026",
+          "details": "National (Junior Category)"
+        },
+        {
+          "result": "Champion",
+          "event": "Bangladesh Economics Olympiad 2026",
+          "details": "National"
+        },
+        {
+          "result": "Individual Bronze + Fundamentals Top 10",
+          "event": "World Economics Cup 2025",
+          "details": "Continental (Asia & Oceania)"
+        },
+        {
+          "result": "Champion + Sajol Kajol Memorial Prize",
+          "event": "National Bangladesh Mathematical Olympiad 2024",
+          "details": "Primary Category + Primary Camp Participant"
+        },
+        {
+          "result": "Winner",
+          "event": "National Bangladesh Economics Olympiad 2025",
+          "details": "camp participant"
+        },
+        {
+          "result": "Winner",
+          "event": "National Bangladesh Economics Olympiad 2025 Camp Test",
+          "details": "selected for World Economics Cup 2025"
+        },
+        {
+          "result": "Champion",
+          "event": "BdJSO National 2023",
+          "details": "Primary Category"
+        },
+        {
+          "result": "7th Place",
+          "event": "Bangladesh Physics Olympiad 2024",
+          "details": "National (Category A) + camp participant"
+        },
+        {
+          "result": "Honorable Mention",
+          "event": "National Bangladesh Mathematical Olympiad 2025",
+          "details": "Junior Category + Junior Camp Participant"
+        }
+      ]
+    },
+    {
+      "title": "Other Recognition",
+      "items": [
+        {
+          "result": "Champion",
+          "event": "Comilla Government College Science Fusion 2025",
+          "details": "Physics Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "Comilla Government College Science Fusion 2025",
+          "details": "Math Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "KnowledgeHive Alpha 1.0 2024",
+          "details": "Physics Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "KnowledgeHive Alpha 1.0 2024",
+          "details": "Math Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0",
+          "details": "Science Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "Nawab Faizunnesa Government Girls High School 2023 Brainwave 1.0",
+          "details": "Math Olympiad"
+        },
+        {
+          "result": "Champion",
+          "event": "Cumilla Regional Bangladesh Physics Olympiad",
+          "details": "Category A"
+        },
+        {
+          "result": "1st Runner Up",
+          "event": "Comilla Zilla School Science Carnival 3.0 2022",
+          "details": "Science Quiz"
+        }
+      ]
+    }
+  ]
+}

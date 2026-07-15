@@ -2,9 +2,12 @@
     --paper: #f5f3ef;
     --bg: #1e1e1e;
     --sep: #ccc;
+    /*sepl=sep transparent*/
+    --sepl: #cccccc88;
     --luh: #555;
     --rrc: #ddd;
     --lh: #1e1e1e;
+    --faded: #555;
     box-sizing: border-box;
 }
 body{
@@ -42,7 +45,7 @@ body{
     overflow-y: auto;
     filter: blur(8px);
     will-change: filter;
-    animation: unblur 2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    animation: unblur 0.9s cubic-bezier(0.33, 1, 0.68, 1) forwards;
 
 }
 #more {
@@ -63,7 +66,7 @@ body{
     }
     #col1{
         border-right: 1px solid var(--sep);
-        padding-right: 20px;
+    padding-right: 20px;
     }
     #col1, #col2{
         height: 100%;
@@ -123,4 +126,27 @@ body{
 }
 a {
     color: #000;
+}
+hr{
+    border-bottom: 1px solid var(--sepl);
+    border-left:0;
+    border-top:0;
+    border-right:0;
+}
+.faded{
+    color: var(--faded);
+}
+.award p{
+    margin: 0;
+}
+.award h3{
+    margin: 0;
+    margin-bottom: 5px;
+}
+.award{
+    padding-bottom: 30px;
+}
+
+.pad{
+    padding-bottom: 10px;
 }

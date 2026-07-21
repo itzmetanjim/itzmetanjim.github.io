@@ -2,23 +2,21 @@
 import sys
 import json
 import re
-
+try:
+    import minify_html
+except ImportError:
+    print("Please install minify_html for minification: pip install minify_html")
+    exit()
 
 class TemplateError(Exception):
     pass
-
-
 def _sub(tpl: str, item: dict) -> str:
     return re.sub(r"\[\[(.*?)\]\]", lambda m, it=item: str(it.get(m.group(1), "")), tpl)
-
-
 def _render_awards(awardlines, ans):
     awards = json.load(open("awards.json"))
     awardt = "\n".join(awardlines)
     for item in (x for g in awards["award_groups"] for x in g["items"]):
         ans.append(_sub(awardt, item))
-
-
 def _render_projects(projectlines, ans):
     projects = json.load(open("projects.json"))
     text = "\n".join(projectlines)
@@ -36,19 +34,15 @@ def _render_projects(projectlines, ans):
         else:
             rendered = before
         ans.append(_sub(rendered, p))
-
-
 def generate(cont: str) -> str:
     lines = cont.splitlines()
     ans = []
     awardlines = []
     projectlines = []
-    mode = 0  # 0 top, 1 notice, 2 award, 3 project, 4 project-links
+    mode = 0
     names = {1: "TEMPLATE NOTICE", 2: "AWARD", 3: "PROJECT", 4: "PROJECT LINKS"}
-
     for n, line in enumerate(lines, 1):
         has = lambda s: s in line
-
         if has("<!--!BEGIN TEMPLATE NOTICE-->"):
             if mode != 0:
                 raise TemplateError(f"line {n}: unexpected BEGIN TEMPLATE NOTICE while already inside a section")
@@ -59,7 +53,6 @@ def generate(cont: str) -> str:
                 raise TemplateError(f"line {n}: END TEMPLATE NOTICE without a matching BEGIN")
             mode = 0
             continue
-
         if has("<!--!BEGIN AWARD-->"):
             if mode != 0:
                 raise TemplateError(f"line {n}: unexpected BEGIN AWARD while already inside a section")
@@ -72,7 +65,6 @@ def generate(cont: str) -> str:
             awardlines = []
             mode = 0
             continue
-
         if has("<!--!BEGIN PROJECT-->"):
             if mode != 0:
                 raise TemplateError(f"line {n}: unexpected BEGIN PROJECT while already inside a section")
@@ -93,28 +85,42 @@ def generate(cont: str) -> str:
             projectlines = []
             mode = 0
             continue
-
         if mode == 0:
             ans.append(line)
         elif mode == 2:
             awardlines.append(line)
         elif mode in (3, 4):
             projectlines.append(line)
-
     if mode != 0:
         raise TemplateError(f"unmatched BEGIN {names[mode]} at end of file (missing END)")
-
     return "\n".join(ans)
 
 
+def inline_and_minify(html: str) -> str:
+    css = open("index.css").read()
+    html = html.replace('<link rel="stylesheet" href="index.css">', f"<style>{css}</style>")
+    js = open("index.js").read()
+    if js.strip():
+        html = html.replace('<script src="index.js"></script>', f"<script>{js}</script>")
+    else:
+        html = html.replace('\n        <script src="index.js"></script>\n', "")
+    return minify_html.minify(
+        html,
+        minify_css=True,
+        minify_js=True,
+        remove_processing_instructions=True,
+        keep_html_and_head_opening_tags=True,
+    )
 if len(sys.argv) >= 2 and sys.argv[1] == "stream":
     try:
-        sys.stdout.write(generate(sys.stdin.read()))
+        html = generate(sys.stdin.read())
+        sys.stdout.write(inline_and_minify(html))
     except TemplateError as e:
         sys.stderr.write(f"Template error: {e}\n")
         sys.exit(1)
     sys.exit()
-
 with open("indext.html") as f:
-    with open("index.html", "w") as F:
-        F.write(generate(f.read()))
+    html = generate(f.read())
+
+with open("index.html", "w") as f:
+    f.write(inline_and_minify(html))

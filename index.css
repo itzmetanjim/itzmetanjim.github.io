@@ -21,8 +21,9 @@
         --lr: 0.5%;
     }
 }
-h1{
+h1, h2.ph2{
     color: var(--h1);
+    font-size: 2em;
 }
 body{
     background-color: var(--bg);

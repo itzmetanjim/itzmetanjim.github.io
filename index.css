@@ -27,7 +27,7 @@ h1, h2.ph2{
 }
 body{
     background-color: var(--bg);
-    font-family: "Nunito", sans-serif;
+    font-family: "/* !FONT_FAMILY */", sans-serif;
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;

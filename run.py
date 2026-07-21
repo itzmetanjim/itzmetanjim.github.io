@@ -2,12 +2,17 @@
 import sys
 import json
 import re
+import base64
+import urllib.request
+
 try:
     import minify_html
 except ImportError:
-    print("Please install minify_html for minification: pip install minify_html")
+    print("Please install minify_html: pip install minify_html")
     exit()
-
+FONT_FAMILY = "Nunito"
+FONT_WEIGHTS = [300]
+FONT_ITALIC = False
 class TemplateError(Exception):
     pass
 def _sub(tpl: str, item: dict) -> str:
@@ -95,15 +100,42 @@ def generate(cont: str) -> str:
         raise TemplateError(f"unmatched BEGIN {names[mode]} at end of file (missing END)")
     return "\n".join(ans)
 
+def _fetch_font_css() -> str:
+    if FONT_ITALIC:
+        styles = ";".join(f"0,{w};1,{w}" for w in FONT_WEIGHTS)
+        family = f"family={FONT_FAMILY}:ital,wght@{styles}"
+    else:
+        styles = ";".join(str(w) for w in FONT_WEIGHTS)
+        family = f"family={FONT_FAMILY}:wght@{styles}"
+
+    url = f"https://fonts.googleapis.com/css2?{family}&display=swap"
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    })
+    css = urllib.request.urlopen(req).read().decode()
+
+    def _embed(m):
+        woff2 = urllib.request.urlopen(m.group(1)).read()
+        return f'url(data:font/woff2;base64,{base64.b64encode(woff2).decode()}) format("woff2")'
+
+    return re.sub(r'url\((https://[^)]+\.woff2)\)', _embed, css)
 
 def inline_and_minify(html: str) -> str:
+    font_css = _fetch_font_css()
+
     css = open("index.css").read()
+    css = css.replace("/* !FONT_FAMILY */", FONT_FAMILY)
+    css = font_css + css
     html = html.replace('<link rel="stylesheet" href="index.css">', f"<style>{css}</style>")
+    html = re.sub(r'\n?\s*<link[^>]*fonts\.googleapis\.com[^>]*>\s*', "", html)
+    html = re.sub(r'\n?\s*<link[^>]*fonts\.gstatic\.com[^>]*>\s*', "", html)
+
     js = open("index.js").read()
     if js.strip():
         html = html.replace('<script src="index.js"></script>', f"<script>{js}</script>")
     else:
-        html = html.replace('\n        <script src="index.js"></script>\n', "")
+        html = re.sub(r'\n?\s*<script src="index\.js"></script>', "", html)
+
     return minify_html.minify(
         html,
         minify_css=True,
@@ -111,6 +143,7 @@ def inline_and_minify(html: str) -> str:
         remove_processing_instructions=True,
         keep_html_and_head_opening_tags=True,
     )
+
 if len(sys.argv) >= 2 and sys.argv[1] == "stream":
     try:
         html = generate(sys.stdin.read())

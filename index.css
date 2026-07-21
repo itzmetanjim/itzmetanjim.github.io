@@ -1,13 +1,18 @@
-:root{
-    --paper: #f5f3ef;
-    --bg: #1e1e1e;
-    --sep: #ccc;
-    --invsep: #333;
-    --sepl: #cccccc88;
-    --luh: #555;
-    --rrc: #ddd;
-    --lh: #1e1e1e;
-    --faded: #555;
+:root {
+    --paper: oklch(0.965 0.006 85.2);
+    --bg: oklch(0.7972 0.1584 360);
+    --h1: oklch(0.55 0.24 360);
+    --h2: oklch(0.58 0.20 360);
+    --ah3: oklch(0.60 0.18 1.1);
+    --bt: oklch(0.25 0.01 85.2);
+    --faded: oklch(0.48 0.01 85.2);
+    --luh: oklch(0.52 0.22 1.1);
+    --lessluh: oklch(0.52 0.22 1.1 / 0.2);
+    --lh: oklch(0.717 0.192 1.3);
+    --sep: oklch(0.86 0.004 85.2);
+    --sepl: oklch(0.86 0.004 85.2 / 0.53);
+    --invsep: oklch(0.321 0 0);
+    --rrc: oklch(0.965 0.006 85.2/0.53);
     --lr: 5%;
     box-sizing: border-box;
 }
@@ -15,6 +20,9 @@
     :root{
         --lr: 0.5%;
     }
+}
+h1{
+    color: var(--h1);
 }
 body{
     background-color: var(--bg);
@@ -154,6 +162,10 @@ hr{
 .award h3{
     margin: 0;
     margin-bottom: 5px;
+    color:var(--ah3);
+}
+.project h3{
+    color:var(--ah3);
 }
 .award, .project{
     padding-bottom: 30px;
@@ -169,11 +181,19 @@ hr{
     margin-right: 10px;
     text-decoration:none;
     padding: 5px 10px;
-    border: 1px solid var(--sep);
+    color: var(--luh);
+    border: 1px solid var(--lessluh);
     transition: background-color 0.3s cubic-bezier(0.33, 1, 0.68, 1), color 0.3s cubic-bezier(0.33, 1, 0.68, 1), filter 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 }
 .links a:hover{
     color: #fff;
-    background-color: var(--invsep);
+    background-color: var(--luh);
 
 }
+h2{
+    color: var(--h2)
+}
+p{
+    color: var(--bt);
+}
+

@@ -1,7 +1,7 @@
 :root {
     --paper: oklch(0.965 0.006 85.2);
     --bg: oklch(0.7972 0.1584 360);
-    --h1: oklch(0.55 0.24 360);
+    --h1:color-mix(in oklch, oklch(0.55 0.24 360) 80%, color(display-p3 2 0 1));
     --h2: oklch(0.58 0.20 360);
     --ah3: oklch(0.60 0.18 1.1);
     --bt: oklch(0.25 0.01 85.2);
@@ -12,7 +12,7 @@
     --sep: oklch(0.86 0.004 85.2);
     --sepl: oklch(0.86 0.004 85.2 / 0.53);
     --invsep: oklch(0.321 0 0);
-    --rrc: oklch(0.965 0.006 85.2/0.53);
+    --rrc: oklch(0.8975 0.0571 0);
     --lr: 5%;
     box-sizing: border-box;
 }
@@ -59,7 +59,7 @@ body{
     overflow-y: auto;
     filter: blur(8px);
     will-change: filter;
-    animation: unblur 0.9s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    animation: unblur 0.9s cubic-bezier(0.68,1,0.33, 1) forwards;
 
 }
 #more {

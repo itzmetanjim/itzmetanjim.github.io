@@ -114,11 +114,20 @@ def _fetch_font_css() -> str:
     })
     css = urllib.request.urlopen(req).read().decode()
 
+    blocks = re.split(r'(/\*\s*\w[\w-]*\s*\*/)', css)
+    latin_block = ""
+    for i, block in enumerate(blocks):
+        if re.match(r'/\*\s*latin\s*\*/', block):
+            latin_block = blocks[i + 1]
+            break
+    if not latin_block:
+        latin_block = css
+
     def _embed(m):
         woff2 = urllib.request.urlopen(m.group(1)).read()
         return f'url(data:font/woff2;base64,{base64.b64encode(woff2).decode()}) format("woff2")'
 
-    return re.sub(r'url\((https://[^)]+\.woff2)\)', _embed, css)
+    return re.sub(r'url\((https://[^)]+\.woff2)\)\s*format\([\'"]woff2[\'"]\)', _embed, latin_block)
 
 def inline_and_minify(html: str) -> str:
     font_css = _fetch_font_css()

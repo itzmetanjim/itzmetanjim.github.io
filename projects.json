@@ -22,6 +22,16 @@
       ]
     },
     {
+      "title": "Linux Kernel Contributions",
+      "description": "is this a project? idk where to put it. some of them got accepted!",
+      "links": [
+        {
+          "label": "lore.kernel.org",
+          "url": "https://lore.kernel.org/all/?q=tanjim"
+        }
+      ]
+    },
+    {
       "title": "Shelledit",
       "description": "Full-fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive set of 150+ shortcuts to be as fast as Vim while 10x easier to learn.",
       "links": [
@@ -32,16 +42,6 @@
         {
           "label": "GitHub",
           "url": "https://github.com/itzmetanjim/shelledit"
-        }
-      ]
-    },
-    {
-      "title": "Linux Kernel Contributions",
-      "description": "is this a project? idk where to put it. some of them got accepted!",
-      "links": [
-        {
-          "label": "lore.kernel.org",
-          "url": "https://lore.kernel.org/all/?q=tanjim"
         }
       ]
     },
@@ -190,7 +190,7 @@
     },
     {
       "title": "LLM Dump",
-      "description": "Access every latest AI model with generous ratelimits, completely free. Only GitHub models, so not Anthropic.",
+      "description": "[DEPRECATED] Access every latest AI model with generous ratelimits, completely free. Only GitHub models, so not Anthropic.",
       "links": [
         {
           "label": "Visit",

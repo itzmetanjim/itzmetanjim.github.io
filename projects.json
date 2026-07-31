@@ -1,0 +1,211 @@
+[
+    {
+      "title": "CVE-2026-8697: Login Rate Limit Bypass on TP-Link Archer C64",
+      "description": "CVE-2026-8697 is a logic flaw in the TP-Link Archer C64's OS (called TPOS in the debug message). It lets any unprivileged user connected to the router bypass the web UI rate limit by using a residual SSH service. A simple Python script can be used to try out many passwords in a short amount of time and obtain full admin access on the router. CVSS 3.0: 8.8 High",
+      "links": [
+        {
+          "label": "Writeup",
+          "url": "https://pages.tanjim.org/cve-2026-8697/"
+        },
+        {
+          "label": "CVE MITRE",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-8697"
+        },
+        {
+          "label": "Advisory",
+          "url": "https://www.tp-link.com/us/support/faq/5105/"
+        },
+        {
+          "label": "NVD",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-8697"
+        }
+      ]
+    },
+    {
+      "title": "Shelledit",
+      "description": "Full-fledged TUI IDE written in Rust, with syntax highlighting, advanced LSP, built-in file explorer sidebar and terminal, error checking, mouse cursor support. Includes a comprehensive set of 150+ shortcuts to be as fast as Vim while 10x easier to learn.",
+      "links": [
+        {
+          "label": "Download",
+          "url": "https://github.com/itzmetanjim/shelledit/releases/tag/v0.1.0"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/shelledit"
+        }
+      ]
+    },
+    {
+      "title": "Linux Kernel Contributions",
+      "description": "is this a project? idk where to put it. some of them got accepted!",
+      "links": [
+        {
+          "label": "lore.kernel.org",
+          "url": "https://lore.kernel.org/all/?q=tanjim"
+        }
+      ]
+    },
+    {
+      "title": "curSH",
+      "badge": "3.67K+ downloads",
+      "description": "Replace dangerous curl|sh 'easy install' scripts with a safe alternative. One can rm -rf your root directory; the other provides advanced cryptographical verification.",
+      "links": [
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/cursh/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/cursh"
+        }
+      ]
+    },
+    {
+      "title": "PyPositron",
+      "badge": "12.91k+ downloads",
+      "description": "A Python UI framework for developing interfaces with HTML, CSS, JS, and Python. Currently in Alpha.",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/py-positron"
+        },
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/py-positron/"
+        }
+      ]
+    },
+    {
+      "title": "TINAC: Tinac Is Not A CAPTCHA",
+      "description": "A new kind of CAPTCHA. You drag a slider until the noisy image suddenly snaps to readable text then input it. Supports JWT. Decoys are generated using Markov Chains to make ML harder.",
+      "links": [
+        {
+          "label": "View Site",
+          "url": "https://tanjim.org/tinac/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/tinac"
+        }
+      ]
+    },
+    {
+      "title": "MKCD",
+      "badge": "4.41K+ downloads",
+      "description": "Linux utilities for Windows - bringing familiar Linux commands like grep, awk, sed, head, and more to Windows PowerShell and CMD without requiring WSL or separate terminals.",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/mkcd"
+        },
+        {
+          "label": "PyPI",
+          "url": "https://pypi.org/project/mkcd/"
+        }
+      ]
+    },
+    {
+      "title": "Electromania",
+      "description": "Simulate protons, electrons, neutrons and the 4 fundamental forces of nature in an interactive environment. Supports electric plates and magnets as well. Full electromagnetism simulation.",
+      "links": [
+        {
+          "label": "View Site",
+          "url": "https://tanjim.org/electromania"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/electromania"
+        }
+      ]
+    },
+    {
+      "title": "Projectile Mania",
+      "description": "Advanced projectile simulation sandbox with 4 environments and 4 projectiles and 2 blocks. Includes FLIP simulated water. Supports quantum tunnelling.",
+      "links": [
+        {
+          "label": "View Site",
+          "url": "https://tanjim.org/projectilemania"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/projectilemania"
+        }
+      ]
+    },
+    {
+      "title": "Three-Body Simulation",
+      "description": "A 2D plot where each point corresponds to a particle and the color corresponds to the attractor it collides with.",
+      "links": [
+        {
+          "label": "View Site",
+          "url": "https://tanjim.org/three-body"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/three-body"
+        }
+      ]
+    },
+    {
+      "title": "Double Pendulum",
+      "description": "A 2D plot showing pendulum divergence - reveals non-chaotic and chaotic pendulums through brightness mapping. The result is a beautiful fractal.",
+      "links": [
+        {
+          "label": "View Site",
+          "url": "https://tanjim.org/double-pendulum"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/double-pendulum"
+        }
+      ]
+    },
+    {
+      "title": "Clickey",
+      "description": "Productivity chrome extension. Click on-screen buttons using keyboard keys in 3 keypresses.",
+      "links": [
+        {
+          "label": "Download",
+          "url": "https://github.com/itzmetanjim/clickey/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/clickey"
+        }
+      ]
+    },
+    {
+      "title": "The Idea Anvil",
+      "description": "Create custom items using the power of AI!",
+      "links": [
+        {
+          "label": "Modrinth",
+          "url": "https://modrinth.com/mod/idea_anvil"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/the-idea-anvil"
+        }
+      ]
+    },
+    {
+      "title": "LLM Dump",
+      "description": "Access every latest AI model with generous ratelimits, completely free. Only GitHub models, so not Anthropic.",
+      "links": [
+        {
+          "label": "Visit",
+          "url": "https://llmdump.github.io"
+        }
+      ]
+    },
+    {
+      "title": "DuckyMux",
+      "description": "Run multiple programs simultaneously on an RP2040/RP2350 microcontroller. (except that I didnt port it yet)",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/itzmetanjim/duckymux"
+        }
+      ]
+    }
+  ]

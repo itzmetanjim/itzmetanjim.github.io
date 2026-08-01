@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from fastapi.responses import PlainTextResponse, HTMLResponse
 from enum import StrEnum
@@ -29,6 +30,13 @@ class DeleteModel(BaseModel):
     end:int | None = None
 import json
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 tokens=[]
 webuihtml=""
 with open("webui.html") as f:

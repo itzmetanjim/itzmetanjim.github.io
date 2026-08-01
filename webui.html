@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+    <body>
+        <h1>web ui</h1>
+        <style>
+#table {
+    width: auto;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: sans-serif;
+}
+            #table th,
+            #table td {
+                border: 1px solid #cccccc;
+                padding: 10px;
+                text-align: left;
+            }
+            #table th {
+                background-color: #f4f4f4;
+                font-weight: bold;
+            }
+            #table tr:nth-child(even) {
+                background-color: #fafafa;
+            }
+        </style>
+        <p>i put pretty much no css here since im gonna be the only one ever seeing this</p>
+        <noscript>but i do need js, and js isnt working in your browser</noscript>
+        <h2>messages <a onclick="getall();return false" href="#">reload</a></h2>
+        <table id="table">
+        </table>
+        <script>
+            const token = new URLSearchParams(window.location.search).get('token');
+            async function getall(){
+                let response=0
+                try {
+                    response = await fetch("/getall", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({"token":token})
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error(error.message);
+                }
+                let data=await response.json();
+                window.msgdata=data
+                let dynamic=document.getElementById('table')
+                dynamic.innerHTML=`<tr>
+                <th>ID</th>
+                <th>ip</th>
+                <th>priority</th>
+                <th>message</th>
+                <th>flags</th>
+                <th>action</th>
+            </tr>`
+                for(let i of data.messages){
+                    let tr=document.createElement("tr")
+                    let tdId = document.createElement("td");
+                    tdId.textContent = i.id;
+                    tr.appendChild(tdId);
+                    let tdIp = document.createElement("td");
+                    tdIp.textContent = i.ip;
+                    tr.appendChild(tdIp);
+                    let tdPriority = document.createElement("td");
+                    tdPriority.textContent = i.priority ? 'HIGH PRIORITY' : 'normal priority';
+                    tr.appendChild(tdPriority);
+                    let tdMessage = document.createElement("td");
+                    tdMessage.textContent = i.message;
+                    tr.appendChild(tdMessage);
+                    let tdStatus = document.createElement("td");
+                    tdStatus.textContent = `${i.read ? "read" : "unread"} ${i.notified ? "notified" : "unnotified"}`;
+                    tr.appendChild(tdStatus);
+                    let actions = document.createElement("td");
+                    let a = document.createElement("a");
+                    a.innerText=" [delete] "
+                    a.addEventListener("click",()=>{console.log("a");delete_(i.id)})
+                    a.href="#"
+                    let a2 = document.createElement("a");
+                    a2.innerText=" [toggle read] "
+                    a2.addEventListener("click",()=>{mark(i.id,"read",!i.read)})
+                    a2.href="#"
+                    let a3 = document.createElement("a");
+                    a3.innerText=" [toggle notified] "
+                    a3.addEventListener("click",()=>{mark(i.id,"notified",!i.notified)})
+                    a3.href="#"
+                    actions.appendChild(a);
+                    actions.appendChild(a2);
+                    actions.appendChild(a3);
+
+                    tr.appendChild(actions);
+                    dynamic.appendChild(tr)
+                }
+            }
+            async function delete_(id){
+                let response=0
+                try {
+                    response = await fetch("/delete", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({"token":token,"start":id})
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error(error.message);
+                }
+                let data=await response.json();
+                getall()
+            }
+            async function mark(id,type,value){
+                let response=0
+                try {
+                    response = await fetch("/mark", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({"token":token,"start":id,"type":type,"value":value})
+                    });
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error(error.message);
+                }
+                let data=await response.json();
+                getall()
+            }
+            getall()
+        </script>
+    </body>
+</html>

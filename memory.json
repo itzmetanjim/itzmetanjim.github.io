@@ -1,0 +1,1 @@
+{"messages": [{"priority": true, "message": "message 1", "ip": "127.0.0.1", "id": 1, "read": true, "notified": true}, {"priority": false, "message": "hii", "ip": "127.0.0.1", "id": 2, "read": true, "notified": true}, {"priority": false, "message": "yoooo", "ip": "127.0.0.1", "id": 3, "read": true, "notified": true}], "guestbook": []}

@@ -112,7 +112,7 @@ def sendmsg(payload: SentMsg, request:Request):
         memory["messages"].append({
             "priority":payload.priority,
             "message":payload.message,
-            "ip":ip,
+            "ip":f"{ip}, {request.headers.get("x-forwarded-for")}",
             "id":latestId()+1,
             "read":False,
             "notified":False
@@ -166,5 +166,5 @@ def webui(token: str | None = None):
         return HTMLResponse(content="<!doctype html><html><body><h1>wrong token</h1> paste the token as a query param, so go to /webui?token=[token]<br> <img src='https://emoji.slack-edge.com/T09V59WQY1E/pensive-wobble/db9e72a22f481173.gif'></body></html>", status_code=401)
     return HTMLResponse(content=webuihtml,status_code=200)
 if __name__ == "__main__":
-    uvicorn.run("backend:app", host="127.0.0.1", port=9051, reload=True, proxy_headers=True, forwarded_allow_ips="127.0.0.1")
+    uvicorn.run("backend:app", host="127.0.0.1", port=9051, reload=True)
 

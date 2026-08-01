@@ -1,1 +1,1 @@
-{"messages": [], "guestbook": []}
+{"messages": [{"priority": true, "message": "hihi! this is a test message", "ip": "127.0.0.1", "id": 1, "read": false, "notified": false}], "guestbook": []}

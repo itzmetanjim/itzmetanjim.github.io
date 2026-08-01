@@ -305,6 +305,7 @@ input:checked ~ .cmark {
 .cmark::after {
   content: "";
   width: 6px;
+  position: absolute;
   height: 11px;
   border: solid var(--bt);
   border-width: 0 2px 2px 0;

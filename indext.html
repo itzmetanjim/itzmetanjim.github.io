@@ -76,12 +76,13 @@
                         <p>use PGP if your message is confidential.</p>
                         <textarea id="msginput" placeholder="type here..."></textarea>
                         <label class="ccc">
-                            <input type="checkbox" id="emergency">
+                            <input type="checkbox" id="priority">
                             <span class="cmark"></span>
                             high priority
-                        </label>
+                        </label><br>
                         <p class="links">
-                            <a id="sendmsg">submit!</a>
+                            <a id="sendmsg" onclick="sendMsg();return false">submit!</a>
+                            <span id="msgstate"></span>
                         </p>
                         <noscript>
                             you need JavaScript enabled for this, it seems like you don't have it enabled or your browser doesn't support it.

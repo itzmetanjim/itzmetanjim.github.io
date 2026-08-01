@@ -26,9 +26,34 @@ async function msgToggle(){
 const textareas = document.querySelectorAll('textarea');
 
 textareas.forEach(textarea => {
-  textarea.addEventListener('input', function () {
-    this.style.height = 'auto';
-    this.style.height = this.scrollHeight + 'px';
-  });
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    });
 });
+const APIURL=window.location.hostname === "localhost"?"http://localhost:9051":"https://8051.proxy.tanjim.org/"
+const msgstate=document.getElementById("msgstate")
+const msginput=document.getElementById("msginput")
+const priority=document.getElementById("priority")
+async function sendMsg(){
+    msgstate.innerText="sending..."
+    try {
+        response = await fetch(APIURL+"/sendmsg", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"message":msginput.value,"priority":priority.checked})
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error(error.message);
+        msgstate.innerText="an error occured."
+        return
+    }
+    msgstate.innerText="success!"
+
+}
 

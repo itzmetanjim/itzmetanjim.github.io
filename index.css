@@ -174,7 +174,7 @@ body{
 .hnrrect.hnrrect.hnrrect{
     height: 0px;
     opacity: 0;
-    filter: blur(8px);
+    filter: blur(20px);
 }
 .hrrect:not(.hnrrect){
     margin-top: 20px;

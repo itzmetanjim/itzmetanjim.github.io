@@ -112,7 +112,7 @@ def sendmsg(payload: SentMsg, request:Request):
         memory["messages"].append({
             "priority":payload.priority,
             "message":payload.message,
-            "ip":f"{ip}, {request.headers.get("x-forwarded-for")}",
+            "ip":f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")})",
             "id":latestId()+1,
             "read":False,
             "notified":False

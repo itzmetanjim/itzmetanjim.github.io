@@ -6,6 +6,7 @@ from enum import StrEnum
 import uvicorn
 import copy
 import threading
+from datetime import datetime, timezone
 import os
 class MarkType(StrEnum):
     READ = "read"
@@ -112,7 +113,7 @@ def sendmsg(payload: SentMsg, request:Request):
         memory["messages"].append({
             "priority":payload.priority,
             "message":payload.message,
-            "ip":f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")})",
+            "ip":f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")}), at {datetime.now(timezone.utc).isoformat()}",
             "id":latestId()+1,
             "read":False,
             "notified":False

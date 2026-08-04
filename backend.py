@@ -4,10 +4,16 @@ from pydantic import BaseModel
 from fastapi.responses import PlainTextResponse, HTMLResponse
 from enum import StrEnum
 import uvicorn
+from dotenv import load_dotenv
+load_dotenv()
 import copy
 import threading
 from datetime import datetime, timezone
+import requests
 import os
+import html
+inboxid=os.environ.get("AGENTMAIL_INBOX_ID")
+agentmailtoken=os.environ.get("AGENTMAIL_TOKEN")
 class MarkType(StrEnum):
     READ = "read"
     NOTIFIED = "notified"
@@ -109,16 +115,44 @@ GET /webui?token=<token>
 @app.post("/sendmsg")
 def sendmsg(payload: SentMsg, request:Request):
     ip=request.client.host
+    msg=dict()
     with lock:
-        memory["messages"].append({
+        msg={
             "priority":payload.priority,
             "message":payload.message,
             "ip":f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")}), at {datetime.now(timezone.utc).isoformat()}",
             "id":latestId()+1,
             "read":False,
             "notified":False
-        })
+        }
+        memory["messages"].append(msg)
         syncMemory()
+    res=requests.post(f"https://api.agentmail.to/v0/inboxes/{inboxid}/messages/send",json={
+        "to":"contact@tanjim.org",
+        "cc":"tanjimkamal1@gmail.com",
+        "subject":"New message (sent using tanjim.org), ID:"+str(msg["id"]),
+        "html":f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Message</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f5f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; color: #172b4d;max-width:900px;padding:30px">
+<h1>new message</h1>
+<p><strong>id</strong>:{msg["id"]}</p>
+<p>from {msg["ip"]}</p>
+{"""
+<p><strong>high priority</strong></p>
+""" if msg["priority"] else """
+<p>low priority</p>
+"""}
+<br><br>
+<p style="color:black">{html.escape(msg["message"])}</p>
+</body></html>
+        """
+    },headers={"Authorization": f"Bearer {agentmailtoken}"})
     return {"ok":True}
 @app.post("/getall")
 def getall(payload: TokenModel):

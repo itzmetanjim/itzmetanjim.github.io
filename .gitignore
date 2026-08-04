@@ -8,4 +8,5 @@ tokens
 memory.json
 .vscode/
 .idea/
+.env
 

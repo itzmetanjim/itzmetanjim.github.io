@@ -49,13 +49,15 @@ lily(){
         curl --json "{\"token\":\"$LILY_TOKEN\",\"start\":$2,\"end\":$end}" https://8051.proxy.tanjim.org/delete 2>/dev/null | grep -qx "{\"ok\":true}"
     fi
 }
-({
- output=$(lily messages unread)
-if [[ -z "$output" ]];then
-    :
-else
-    echo
-    echo "You have unread messages. Use lily messages unread to check them." | grep "lily messages unread"
+if [[ $- == *i* ]]; then
+    ({
+        output=$(lily messages unread)
+        if [[ -z "$output" ]];then
+            :
+        else
+            echo
+            echo "You have unread messages. Use lily messages unread to check them." | grep "lily messages unread"
+        fi
+    }&)
 fi
-}&)
 

@@ -18,17 +18,26 @@ trunc() {
 }
 
 messages=$(lily messages_raw)
-length=$(echo "$messages" | jq -r "[ .[] | select(.notified == false) ] | length")
+unnotified=$(echo "$messages" | jq -c "[ .[] | select(.notified == false) ]")
+length=$(echo "$unnotified" | jq -r "length")
 body="uhh a bug occured"
 if ((length == 0));then
     exit
 fi
 while [[ "$(/usr/sbin/ioreg -n Root -d1 -a | /usr/bin/plutil -extract 'IOConsoleUsers.0.CGSSessionScreenIsLocked' raw - 2>/dev/null)" == "true" ]]; do
     sleep 2
-done;
-
+done
+first_ip=$(echo "$unnotified" | jq -r ".[0].ip | split(\" \")[0]")
+first_count=$(echo "$unnotified" | jq -r --arg ip "$first_ip" "[ .[] | select((.ip | split(\" \")[0]) == \$ip) ] | length")
+if ((first_count > 1)); then
+    osascript -e 'display notification "'"$first_count"' messages" with title "Multiple messages from single IP" sound name "Glass"'
+fi
 for ((i=0; i<length; i++)); do
-    msg=$(echo "$messages" | jq -r "[ .[] | select(.notified == false) ] | .[$i] " )
+    msg=$(echo "$unnotified" | jq -c ".[$i]")
+    ip=$(echo "$msg" | jq -r ".ip | split(\" \")[0]")
+    if ((first_count > 1)) && [[ "$ip" == "$first_ip" ]]; then
+        continue
+    fi
     echo $msg
     body=$(echo "$msg" | jq -r ".message" )
     priority=$(echo "$msg"| jq -r 'if .priority == true then " HIGH PRIORITY" else "" end')

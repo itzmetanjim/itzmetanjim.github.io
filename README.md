@@ -1,7 +1,9 @@
 # my personal website!
 
 this website uses a custom hand-rolled build system+framework and a github action.
+
 **for whatever reason my VPS just mysteriously doesn't work in india so use [pages.tanjim.org](https://pages.tanjim.org) instead of [tanjim.org](https://tanjim.org). The messaging API is proxied so it doesn't cause any problems.** Thanks to @KavyanshKhaitan2 for pointing this out! (since im not in india)
+
 ## build system and framework
 (in this specific website they are the same thing i put them in the same scripts)
 

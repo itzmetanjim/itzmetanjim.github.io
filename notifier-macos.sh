@@ -17,6 +17,24 @@ trunc() {
     fi
 }
 
+apple_escape() {
+    local s="${1//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    printf '%s' "$s"
+}
+
+notify() {
+    local title subtitle body
+    title=$(apple_escape "$1")
+    subtitle=$(apple_escape "$2")
+    body=$(apple_escape "$3")
+    if [[ -n "$2" ]]; then
+        osascript -e "display notification \"$body\" with title \"$title\" subtitle \"$subtitle\" sound name \"Glass\""
+    else
+        osascript -e "display notification \"$body\" with title \"$title\" sound name \"Glass\""
+    fi
+}
+
 messages=$(lily messages_raw)
 unnotified=$(echo "$messages" | jq -c "[ .[] | select(.notified == false) ]")
 length=$(echo "$unnotified" | jq -r "length")
@@ -30,7 +48,7 @@ done
 first_ip=$(echo "$unnotified" | jq -r ".[0].ip | split(\" \")[0]")
 first_count=$(echo "$unnotified" | jq -r --arg ip "$first_ip" "[ .[] | select((.ip | split(\" \")[0]) == \$ip) ] | length")
 if ((first_count > 1)); then
-    osascript -e 'display notification "'"$first_count"' messages" with title "Multiple messages from single IP" sound name "Glass"'
+    notify "$first_count messages" "" "Multiple messages from single IP"
 fi
 for ((i=0; i<length; i++)); do
     msg=$(echo "$unnotified" | jq -c ".[$i]")
@@ -38,15 +56,17 @@ for ((i=0; i<length; i++)); do
     if ((first_count > 1)) && [[ "$ip" == "$first_ip" ]]; then
         continue
     fi
-    echo $msg
+    echo "$msg"
     body=$(echo "$msg" | jq -r ".message" )
     priority=$(echo "$msg"| jq -r 'if .priority == true then " HIGH PRIORITY" else "" end')
-    lines=$(echo "$body" | wc -l)
-    echo $lines
+    lines=$(printf '%s\n' "$body" | wc -l)
+    echo "$lines"
+    first_line=$(printf '%s\n' "$body" | head -n 1)
     if ((lines == 1));then
-        osascript -e 'display notification "'"$(echo $body | head -n 1)"'" with title "New'"$priority"' Message" sound name "Glass"'
+        notify "New${priority} Message" "" "$first_line"
     else
-        osascript -e 'display notification "'"$(echo $body | head -n 1)"'" with title "New'"$priority"' Message" subtitle "'"$(echo $body | tail -n +2)"'" sound name "Glass"'
+        rest=$(printf '%s\n' "$body" | tail -n +2)
+        notify "New${priority} Message" "$rest" "$first_line"
     fi
     sleep 2
 done

@@ -13,6 +13,7 @@ except ImportError:
 FONT_FAMILY = "Nunito"
 FONT_WEIGHTS = [300, 700]
 FONT_ITALIC = False
+INLINE_URLS = ["cursor.svg", "textc.svg", "hand.svg"]
 class TemplateError(Exception):
     pass
 def _sub(tpl: str, item: dict) -> str:
@@ -129,12 +130,23 @@ def _fetch_font_css() -> str:
         result += re.sub(r'url\((https://[^)]+\.woff2)\)\s*format\([\'"]woff2[\'"]\)', _embed, block)
     return result
 
+def _inline_css_urls(css: str) -> str:
+    def _embed(m):
+        name = m.group(1)
+        if name not in INLINE_URLS:
+            return m.group(0)
+        data = base64.b64encode(open(name, "rb").read()).decode()
+        return f"url(data:image/svg+xml;base64,{data})"
+    pattern = r"""url\(['"]?([^'")]+\.svg)['"]?\)"""
+    return re.sub(pattern, _embed, css)
+
 def inline_and_minify(html: str) -> str:
     font_css = _fetch_font_css()
 
     css = open("index.css").read()
     css = css.replace("/* !FONT_FAMILY */", FONT_FAMILY)
     css = font_css + css
+    css = _inline_css_urls(css)
     html = html.replace('<link rel="stylesheet" href="index.css">', f"<style>{css}</style>")
     html = re.sub(r'\n?\s*<link[^>]*fonts\.googleapis\.com[^>]*>\s*', "", html)
     html = re.sub(r'\n?\s*<link[^>]*fonts\.gstatic\.com[^>]*>\s*', "", html)

@@ -25,6 +25,33 @@
         --lr: 0.5%;
     }
 }
+* {
+    cursor: url("cursor.svg") 0 0, auto
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea,
+[contenteditable="true"],
+p, span, h1, h2, h3, h4, h5, h6, li {
+    cursor: url("textc.svg") 0 0, text !important;
+}
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+label[for],
+[onclick],
+.clickable {
+    cursor: url("hand.svg") 0 0, pointer;
+}
 #col1, #col2, main{
   overflow: scroll;
   scrollbar-color: var(--lessluh) #00000000;

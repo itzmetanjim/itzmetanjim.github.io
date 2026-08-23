@@ -25,8 +25,12 @@
         --lr: 0.5%;
     }
 }
-* {
+*, body {
     cursor: url("cursor.svg") 0 0, auto
+}
+body {
+    min-height:100vh;
+    overflow: hidden;
 }
 input[type="text"],
 input[type="email"],

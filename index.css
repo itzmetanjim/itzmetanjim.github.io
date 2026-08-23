@@ -25,6 +25,20 @@
         --lr: 0.5%;
     }
 }
+#col1, #col2, main{
+  overflow: scroll;
+  scrollbar-color: var(--lessluh) #00000000;
+  scrollbar-width: thick;
+  animation: scrollbarLessluh 1s ease-out forwards;
+}
+@keyframes scrollbarLessluh {
+    0%{
+      scrollbar-color: var(--h1) #00000000;
+    }
+    100%{
+      scrollbar-color: var(--lessluh) #00000000;
+    }
+}
 h1, h2.ph2{
     color: var(--h1);
     font-size: 2em;

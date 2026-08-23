@@ -24,5 +24,5 @@ this website uses a custom hand-rolled build system+framework and a github actio
 
 ## license
 
-MIT
+MIT, but the custom cursors are GPL.
 

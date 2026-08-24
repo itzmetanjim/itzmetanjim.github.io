@@ -1,5 +1,6 @@
 fastapi
 pydantic
 uvicorn
-dotenv
+python-dotenv
 requests
+minify-html

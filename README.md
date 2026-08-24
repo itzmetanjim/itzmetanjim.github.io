@@ -1,5 +1,5 @@
 # my personal website!
-![image of website](preview_new.png)
+![image of website](preview_new.jpg)
 
 this website uses a custom hand-rolled build system+framework. pushing to main automatically builds via the GitHub action `.github/workflows/build.yml` and deploys the optimized website to GitHub Pages.
 

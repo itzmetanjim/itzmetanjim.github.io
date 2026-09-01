@@ -18,7 +18,10 @@
     --rrc: oklch(0.8975 0.0571 0);
     --lessrrc: oklch(0.8975 0.0394 320.56);
     --text: #000000;
+    --nottext: #FFFFFF;
     --lr: 5%;
+    --dmbg: var(--nottext);
+    --dmfg: var(--text);
     box-sizing: border-box;
 }
 :root:has(body.dark){
@@ -31,7 +34,7 @@
     --faded: oklch(0.58 0.01 85.2);
     --luh: oklch(0.66 0.13 1.1);
     --lessluh: oklch(0.66 0.13 1.1 / 0.2);
-    --lh: oklch(0.72 0.12 1.3);
+    --lh: oklch(0.8 0.10 1.3);
     --sep: oklch(0.28 0.006 85.2);
     --moresep: oklch(0.35 0.006 85.2);
     --sepl: oklch(0.28 0.006 85.2 / 0.53);
@@ -41,7 +44,10 @@
     --rrc: oklch(0.34 0.035 10);
     --lessrrc: oklch(0.32 0.03 320.56);
     --text: #ffffff;
+    --nottext: #000000;
     --lr: 5%;
+    --dmbg: var(--nottext);
+    --dmfg: var(--text);
     box-sizing: border-box;
 }
 @media screen and (max-width:1500px){
@@ -51,6 +57,9 @@
 }
 *, body {
     cursor: url("cursor.svg") 0 0, auto
+}
+*{
+    transition: fill 0.5s ease, stroke 0.5s ease, background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 body {
     min-height:100vh;
@@ -82,17 +91,17 @@ a span,button span, .clickable span, label span,
     cursor: url("hand.svg") 0 0, pointer;
 }
 #col1, #col2, main{
-  overflow: scroll;
-  scrollbar-color: var(--lessluh) #00000000;
-  scrollbar-width: thick;
-  animation: scrollbarLessluh 1s ease-out forwards;
+    overflow: scroll;
+    scrollbar-color: var(--lessluh) #00000000;
+    scrollbar-width: thick;
+    animation: scrollbarLessluh 1s ease-out forwards;
 }
 @keyframes scrollbarLessluh {
     0%{
-      scrollbar-color: var(--h1) #00000000;
+        scrollbar-color: var(--h1) #00000000;
     }
     100%{
-      scrollbar-color: var(--lessluh) #00000000;
+        scrollbar-color: var(--lessluh) #00000000;
     }
 }
 h1, h2.ph2{
@@ -315,77 +324,101 @@ a.l svg{
     margin-right:20px;
 }
 textarea {
-  width: 100%;
-  min-height:100px;
-  height: auto;
-  resize: none;
-  overflow-y: hidden;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: "Nunito", sans-serif ;
-  box-sizing: border-box;
-  padding: 12px 16px;
-  line-height: 1.5;
-  color: var(--bt);
-  background-color: var(--seplest);
-  border: 1px solid var(--moresep);
+    width: 100%;
+    min-height:100px;
+    height: auto;
+    resize: none;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: "Nunito", sans-serif ;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    line-height: 1.5;
+    color: var(--bt);
+    background-color: var(--seplest);
+    border: 1px solid var(--moresep);
 }
 textarea:focus {
-  outline: none;
-  background-color: var(--sepler);
-  border: 1px solid var(--moresep);
+    outline: none;
+    background-color: var(--sepler);
+    border: 1px solid var(--moresep);
 }
 
 .ccc {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-family: "Nunito", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--bt);
-  cursor: pointer;
-  user-select: none;
-  margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--bt);
+    cursor: pointer;
+    user-select: none;
+    margin-top: 10px;
 }
 .ccc input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 .cmark {
-  height: 22px;
-  width: 22px;
-  background-color: var(--seplest);
-  border: 1px solid var(--moresep);
-  border-radius: 4px;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s, border-color 0.2s;
+    height: 22px;
+    width: 22px;
+    background-color: var(--seplest);
+    border: 1px solid var(--moresep);
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
 }
 .ccc input:focus-visible ~ .cmark {
-  background-color: var(--sepler);
-  border: 1px solid var(--moresep);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+    background-color: var(--sepler);
+    border: 1px solid var(--moresep);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 input:checked ~ .cmark {
-  background-color: var(--lh);
+    background-color: var(--lh);
 }
 .cmark::after {
-  content: "";
-  width: 6px;
-  position: absolute;
-  height: 11px;
-  border: solid var(--bt);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg) translate(-1px, -1px);
-  display: none;
+    content: "";
+    width: 6px;
+    position: absolute;
+    height: 11px;
+    border: solid var(--bt);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+    display: none;
 }
 .ccc input:checked ~ .cmark::after {
-  display: block;
+    display: block;
 }
-
+#darkmode {
+    width:48px;
+    height:48px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background-color: var(--dmbg);
+    fill: var(--dmfg);
+    stroke: var(--dmfg);
+    border-width: 0px;
+    border-radius: 100px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: fill 0.5s ease, stroke 0.5s ease, background-color 0.5s ease;
+}
+#darkmode:hover{
+    background-color: var(--dmfg);
+    fill: var(--dmbg);
+    stroke: var(--dmbg);
+}
+#darkmode svg{
+    pointer-events: none;
+    transition: fill 0.5s ease, stroke 0.5s ease, background-color 0.5s ease;
+}

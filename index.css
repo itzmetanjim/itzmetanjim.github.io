@@ -45,7 +45,6 @@
     --lessrrc: oklch(0.32 0.03 320.56);
     --text: #ffffff;
     --nottext: #000000;
-    --lr: 5%;
     --dmbg: var(--nottext);
     --dmfg: var(--text);
     box-sizing: border-box;

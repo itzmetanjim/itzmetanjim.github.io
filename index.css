@@ -41,8 +41,8 @@ input[type="tel"],
 input[type="url"],
 textarea,
 [contenteditable="true"],
-p, span, h1, h2, h3, h4, h5, h6, li {
-    cursor: url("textc.svg") 0 0, text !important;
+span {
+    cursor: url("textc.svg") 0 0, text;
 }
 a,
 button,
@@ -53,6 +53,7 @@ input[type="reset"],
 select,
 label[for],
 [onclick],
+a span,button span, .clickable span, label span,
 .clickable {
     cursor: url("hand.svg") 0 0, pointer;
 }

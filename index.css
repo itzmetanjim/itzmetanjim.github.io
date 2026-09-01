@@ -17,6 +17,30 @@
     --invsep: oklch(0.321 0 0);
     --rrc: oklch(0.8975 0.0571 0);
     --lessrrc: oklch(0.8975 0.0394 320.56);
+    --text: #000000;
+    --lr: 5%;
+    box-sizing: border-box;
+}
+:root:has(body.dark){
+    --paper: oklch(0.22 0.014 85.2);
+    --bg: oklch(0.28 0.05 360);
+    --h1: oklch(0.74 0.13 350);
+    --h2: oklch(0.82 0.07 360);
+    --ah3: oklch(0.72 0.10 1.1);
+    --bt: oklch(0.90 0.008 85.2);
+    --faded: oklch(0.58 0.01 85.2);
+    --luh: oklch(0.66 0.13 1.1);
+    --lessluh: oklch(0.66 0.13 1.1 / 0.2);
+    --lh: oklch(0.72 0.12 1.3);
+    --sep: oklch(0.28 0.006 85.2);
+    --moresep: oklch(0.35 0.006 85.2);
+    --sepl: oklch(0.28 0.006 85.2 / 0.53);
+    --sepler: oklch(0.28 0.006 85.2 / 0.33);
+    --seplest: oklch(0.28 0.006 85.2 / 0.23);
+    --invsep: oklch(0.82 0 0);
+    --rrc: oklch(0.34 0.035 10);
+    --lessrrc: oklch(0.32 0.03 320.56);
+    --text: #ffffff;
     --lr: 5%;
     box-sizing: border-box;
 }
@@ -116,6 +140,9 @@ body{
     animation: unblur 0.9s cubic-bezier(0.68,1,0.33, 1) forwards;
 
 }
+.dark .bgdiv{
+    background-image: unset;
+}
 #more {
     display: grid;
     grid-template-columns: 1fr;
@@ -189,6 +216,7 @@ body{
     transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1), padding 0.5s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1), filter 0.5s cubic-bezier(0.33, 1, 0.68, 1), margin 0.5s cubic-bezier(0.33, 1, 0.68, 1);
     will-change: width, padding, opacity, filter,margin;
     overflow: hidden;
+    color: var(--text)
 }
 .nrrect.nrrect.nrrect{
     width: 0px;

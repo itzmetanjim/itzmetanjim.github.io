@@ -72,5 +72,6 @@ async function sendMsg(){
     }
     msgstate.innerText="success!"
     window.turnstileToken="unsolved"
+    turnstile.reset()
 }
 

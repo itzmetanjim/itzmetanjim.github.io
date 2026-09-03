@@ -96,8 +96,10 @@ POST /sendmsg
     send a message, args:
         message:string      the message
         priority:boolean    true if high priority
+        turnstile:string    cloudflare turnstile token (captcha has been set up in the website)
     output:
         ok:boolean
+        detail:string or nothing
 
 protected endpoints: these all use a token argument, i did not mention them here
 
@@ -132,13 +134,16 @@ def sendmsg(payload: SentMsg, request:Request, response: Response):
     allow=False
     ctime=time.time()
     fxg=f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")})"
-    with lock:
-        iptimes.setdefault(fxg, []).append(time.time())
-        for key in iptimes.keys():
-            iptimes[key]=list(filter(lambda x: x>ctime-120, iptimes[key]))
-        iptimes={k: v for k, v in iptimes.items() if v != []}
-        if len(iptimes[fxg])<6:
-            allow=True
+    if payload.turnstile not in tokens:
+        with lock:
+            iptimes.setdefault(fxg, []).append(time.time())
+            for key in iptimes.keys():
+                iptimes[key]=list(filter(lambda x: x>ctime-120, iptimes[key]))
+            iptimes={k: v for k, v in iptimes.items() if v != []}
+            if len(iptimes[fxg])<6:
+                allow=True
+    else:
+        allow=True
     if not allow:
         response.headers["Retry-After"] = "120";
         raise HTTPException(

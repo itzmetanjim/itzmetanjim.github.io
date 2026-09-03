@@ -117,6 +117,8 @@ GET /webui?token=<token>
 
 @app.post("/sendmsg")
 def sendmsg(payload: SentMsg, request:Request, response: Response):
+    if payload.message=="":
+        return {"ok":"false", "detail":"you tried to send an empty message."}
     global iptimes
     ip=request.client.host
     allow=False

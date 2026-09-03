@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException, status, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import time
 from fastapi.responses import PlainTextResponse, HTMLResponse
 from enum import StrEnum
 import uvicorn
@@ -70,6 +71,7 @@ def latestId():
     ids=list(map(lambda x:int(x["id"]),memory["messages"]))
     return max(ids) if len(ids) != 0 else 0
 lock = threading.Lock()
+iptimes = dict()
 @app.get("/",response_class=PlainTextResponse)
 def read_root():
     return """
@@ -114,8 +116,25 @@ GET /webui?token=<token>
 """
 
 @app.post("/sendmsg")
-def sendmsg(payload: SentMsg, request:Request):
+def sendmsg(payload: SentMsg, request:Request, response: Response):
+    global iptimes
     ip=request.client.host
+    allow=False
+    ctime=time.time()
+    fxg=f"{request.headers.get("x-lily-forwarded-for")} ({ip}, {request.headers.get("x-forwarded-for")})"
+    with lock:
+        iptimes.setdefault(fxg, []).append(time.time())
+        for key in iptimes.keys():
+            iptimes[key]=list(filter(lambda x: x>ctime-120, iptimes[key]))
+        iptimes={k: v for k, v in iptimes.items() if v != []}
+        if len(iptimes[fxg])<6:
+            allow=True
+    if not allow:
+        response.headers["Retry-After"] = "120";
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail="aaa you sent more than 6 messages in 2 minutes!!! take a chill pill"
+        )
     msg=dict()
     with lock:
         msg={

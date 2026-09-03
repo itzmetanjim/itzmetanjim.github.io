@@ -36,6 +36,10 @@ const msgstate=document.getElementById("msgstate")
 const msginput=document.getElementById("msginput")
 const priority=document.getElementById("priority")
 async function sendMsg(){
+    if(msginput.value===""){
+        msgstate.innerText="write a non-empty message!"
+        return
+    }
     msgstate.innerText="sending..."
     try {
         response = await fetch(APIURL+"/sendmsg", {
@@ -45,6 +49,10 @@ async function sendMsg(){
             },
             body: JSON.stringify({"message":msginput.value,"priority":priority.checked})
         });
+        if (response.status===429){
+            msgstate.innerText="you are sending too many messages. try again later."
+            return
+        }
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }

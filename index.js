@@ -2,6 +2,11 @@ function emailToggle(){
     document.querySelector('.rrect#emailr').classList.toggle('nrrect')
     return false
 }
+window.turnstileToken="unsolved"
+function onTurnstileSuccess(token) {
+    console.log("success");
+    window.turnstileToken=token;
+}
 const delay = ms => new Promise(res => setTimeout(res, ms));
 var flag2=false
 async function msgToggle(){
@@ -40,6 +45,10 @@ async function sendMsg(){
         msgstate.innerText="write a non-empty message!"
         return
     }
+    if(window.turnstileToken==="unsolved"){
+        msgstate.innerText="solve the captcha above to prove you are a human. it might take a few seconds to load."
+        return
+    }
     msgstate.innerText="sending..."
     try {
         response = await fetch(APIURL+"/sendmsg", {
@@ -47,7 +56,7 @@ async function sendMsg(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({"message":msginput.value,"priority":priority.checked})
+            body: JSON.stringify({"message":msginput.value,"priority":priority.checked, "turnstile":window.turnstileToken})
         });
         if (response.status===429){
             msgstate.innerText="you are sending too many messages. try again later."
@@ -62,6 +71,6 @@ async function sendMsg(){
         return
     }
     msgstate.innerText="success!"
-
+    window.turnstileToken="unsolved"
 }
 

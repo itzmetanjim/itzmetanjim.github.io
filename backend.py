@@ -16,12 +16,14 @@ import os
 import html
 inboxid=os.environ.get("AGENTMAIL_INBOX_ID")
 agentmailtoken=os.environ.get("AGENTMAIL_TOKEN")
+cfkey=os.environ.get("CF_KEY")
 class MarkType(StrEnum):
     READ = "read"
     NOTIFIED = "notified"
 class SentMsg(BaseModel):
     priority: bool
     message:str
+    turnstile:str
 class TokenModel(BaseModel):
     token:str
 class NewModel(BaseModel):
@@ -72,6 +74,12 @@ def latestId():
     return max(ids) if len(ids) != 0 else 0
 lock = threading.Lock()
 iptimes = dict()
+def verify_cf(token:str)->bool:
+    return requests.post("https://challenges.cloudflare.com/turnstile/v0/siteverify",data={"secret":cfkey,"response":token},timeout=10).json().get("success",False) or token in tokens
+    # "or token in tokens" means i can override this with an API key
+
+
+
 @app.get("/",response_class=PlainTextResponse)
 def read_root():
     return """
@@ -136,6 +144,11 @@ def sendmsg(payload: SentMsg, request:Request, response: Response):
         raise HTTPException(
             status_code=status.HTTP_429_TOO_MANY_REQUESTS,
             detail="aaa you sent more than 6 messages in 2 minutes!!! take a chill pill"
+        )
+    if not verify_cf(payload.turnstile):
+       raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="sorry cloudflare says you are a bot, try captcha again"
         )
     msg=dict()
     with lock:

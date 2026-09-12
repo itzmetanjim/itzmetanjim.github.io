@@ -36,7 +36,7 @@ textareas.forEach(textarea => {
         this.style.height = this.scrollHeight + 'px';
     });
 });
-const APIURL=window.location.hostname === "localhost"?"http://localhost:9051":"https://tanjim.org:8051/"
+const APIURL=window.location.hostname === "localhost"?"http://localhost:9051":"https://8051.proxy.tanjim.org/"
 const msgstate=document.getElementById("msgstate")
 const msginput=document.getElementById("msginput")
 const priority=document.getElementById("priority")

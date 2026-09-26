@@ -148,6 +148,11 @@ body{
     animation: unblur 0.9s cubic-bezier(0.68,1,0.33, 1) forwards;
 
 }
+/* pre-rendered tiles of the svg noise above, swapped in by index.js once loaded (svg rendering lags on low end hw) */
+.bgdiv.noise-ready{
+    background-image: radial-gradient(140% 45% at 50% -10%, #fffcf48c, #fffcf400 60%), radial-gradient(160% 55% at 50% 110%, #3c281414, #3c281400 60%), url("noise/paper.avif"), url("noise/cloud.avif"), url("noise/fine.avif");
+    background-size: 100% 100%, 100% 100%, 420px 420px, 1100px 1100px, 160px 160px;
+}
 .dark .bgdiv{
     background-image: unset;
 }

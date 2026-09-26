@@ -1,3 +1,9 @@
+// swap the svg noise bg for pre-rendered avif tiles once they're all decoded (svg stays if avif unsupported)
+Promise.all(["paper","cloud","fine"].map(n => {
+    const img = new Image()
+    img.src = `noise/${n}.avif`
+    return img.decode()
+})).then(() => document.querySelector('.bgdiv').classList.add('noise-ready')).catch(() => {})
 function emailToggle(){
     document.querySelector('.rrect#emailr').classList.toggle('nrrect')
     return false
